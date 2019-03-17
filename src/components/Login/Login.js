@@ -12,7 +12,7 @@ import { FacebookProvider, LoginButton } from 'react-facebook';
 export default class Login extends Component {
 
     state = {
-        
+
     }
 
     render() {
@@ -37,24 +37,25 @@ export default class Login extends Component {
                                     </Button>
                                     <hr/>
                                     <Container>
-                                        <Row className="justify-content-md-center">
-                                            <Col xs={8} md={4}>
+                                        <Row>
+                                            <Col>
                                                 <GoogleLogin
                                                     onSuccess={'responseGoogle'}
                                                     onFailure={'responseGoogle'}
                                                     clientId={1212121212121}
                                                     buttonText="Google"
+                                                    className="socialButton"
                                                 />
                                             </Col>
-                                            <Col xs={8} md={4}>
+                                            <Col>
                                                 <FacebookProvider appId="123456789">
                                                     <LoginButton
-                                                        className="fbButton"
+                                                        className="fbButton socialButton"
                                                         scope="email"
                                                         onCompleted={this.handleResponse}
                                                         onError={this.handleError}
                                                     >
-                                                        <span><i className="fab fa-facebook-f"></i> <strong>Facebook</strong></span>
+                                                        <span><i className="fab fa-facebook-f"></i> Facebook</span>
                                                     </LoginButton>
                                                 </FacebookProvider>
                                             </Col>

@@ -2,14 +2,18 @@ import React from 'react'
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import './Header.css'
+import trident from '../../assets/img/trident.png'
 import Button from "react-bootstrap/Button";
 
 
 const header = () => {
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="/">E-Restaurant</Navbar.Brand>
+            <Navbar bg="light" expand="lg" fixed="top">
+                <Navbar.Brand href="/">
+                    <img  className="logo" src={trident} alt="logo"/>
+                    <span>RestoConnect</span>
+                </Navbar.Brand>
                 <a href="/login" className="cta loginButton">
                     <span>Se connecter</span>
                     <svg width="13px" height="10px" viewBox="0 0 13 10">

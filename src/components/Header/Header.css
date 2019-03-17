@@ -71,3 +71,7 @@ a {
 .cta:active {
     transform: scale(0.96);
 }
+.logo {
+    height:50px;
+    top:0
+}
