@@ -11,26 +11,55 @@ import { FacebookProvider, LoginButton } from 'react-facebook';
 
 export default class Login extends Component {
 
-    state = {
+    constructor (props) {
+        super(props)
+        this.state = {
+            email : '',
+            password : '',
+            submitted: false
+        }
 
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.setState({submitted : true})
+    }
+
+    handleChange = (event) => {
+        const {name, value} = event.target
+        this.setState({[name] : value})
+    }
+
     render() {
+        const {email, password, submitted} = this.state
         return (
             <Container>
                 <Row className="justify-content-md-center">
                     <Col xs={10} md={6}>
                         <Card className="LoginCard">
                             <Card.Body>
-                                <Form>
+                                <Form name="loginForm" onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="formBasicEmail">
                                         <Form.Label>E-mail</Form.Label>
-                                        <Form.Control type="email" placeholder="Saisir votre e-mail " />
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Saisir votre e-mail "
+                                            name="email"
+                                            value={email}
+                                            onChange={this.handleChange}
+                                        />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBasicPassword">
+                                    <Form.Group controlId="formBasicPassword" >
                                         <Form.Label>Mot de passe</Form.Label>
-                                        <Form.Control type="password" placeholder="Mot de passe" />
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Mot de passe"
+                                            name="password"
+                                            value={password}
+                                            onChange={this.handleChange}
+                                        />
                                     </Form.Group>
                                     <Button variant="success" type="submit" size="lg" block>
                                         Se connecter
