@@ -8,22 +8,39 @@ import Card from "react-bootstrap/Card";
 import './Login.css'
 import { GoogleLogin } from 'react-google-login';
 import { FacebookProvider, LoginButton } from 'react-facebook';
+import {connect} from "react-redux";
+import {doLoginRequest} from '../../actions/authentification_actions'
 
-export default class Login extends Component {
+class Login extends Component {
 
     constructor (props) {
         super(props)
+
         this.state = {
             email : '',
             password : '',
-            submitted: false
+            submitted: false,
+            validated: false
         }
 
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.setState({submitted : true})
+        const form = event.currentTarget
+        if(form.checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        this.setState({
+            validated: true,
+            submitted : true
+        })
+
+        const {email, password} = this.state
+        this.props.loginRequest({email, password})
+
     }
 
     handleChange = (event) => {
@@ -32,14 +49,18 @@ export default class Login extends Component {
     }
 
     render() {
-        const {email, password, submitted} = this.state
+        const {email, password, validated, submitted} = this.state
         return (
             <Container>
                 <Row className="justify-content-md-center">
                     <Col xs={10} md={6}>
                         <Card className="LoginCard">
                             <Card.Body>
-                                <Form name="loginForm" onSubmit={this.handleSubmit}>
+                                <Form
+                                    name="loginForm"
+                                    noValidate
+                                    validated={validated}
+                                    onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="formBasicEmail">
                                         <Form.Label>E-mail</Form.Label>
                                         <Form.Control
@@ -47,8 +68,12 @@ export default class Login extends Component {
                                             placeholder="Saisir votre e-mail "
                                             name="email"
                                             value={email}
+                                            required
                                             onChange={this.handleChange}
                                         />
+                                        <Form.Control.Feedback type="invalid">
+                                            Veuillez saisir votre e-mail
+                                        </Form.Control.Feedback>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicPassword" >
@@ -58,8 +83,12 @@ export default class Login extends Component {
                                             placeholder="Mot de passe"
                                             name="password"
                                             value={password}
+                                            required
                                             onChange={this.handleChange}
                                         />
+                                        <Form.Control.Feedback type="invalid">
+                                            Veuillez saisir votre mot de passe
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                     <Button variant="success" type="submit" size="lg" block>
                                         Se connecter
@@ -99,3 +128,13 @@ export default class Login extends Component {
         )
     }
 }
+const LoginForm = connect(null, mapDispatchToProps)(Login)
+export default LoginForm
+
+
+function mapDispatchToProps(disptach) {
+    return {
+        loginRequest : user => disptach (doLoginRequest(user))
+    }
+}
+
