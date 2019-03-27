@@ -3,6 +3,8 @@ import {authentification_constants} from "../constants/authentification_constant
 const INITIAL_STATE = {
     loggingIn : false,
     loggedIn : false,
+    isRegistered : false,
+    isRegisterFail: false,
     user : null
 }
 
@@ -18,6 +20,12 @@ const applyLogInRequest = (state, action) => ({
     user : action.user
 })
 
+const applyRegisterSuccess = (state, action) => ({
+    isRegistered: true,
+    user: action.user
+})
+
+
 function authentificationReducer (state = INITIAL_STATE, action) {
 
     switch (action.type) {
@@ -25,6 +33,8 @@ function authentificationReducer (state = INITIAL_STATE, action) {
             return applyLogInRequest(state, action)
         case authentification_constants.LOGIN_SUCCESS :
             return applyLogInSuccess(state, action)
+        case authentification_constants.REGISTER_SUCCESS :
+            return applyRegisterSuccess(state, action)
         default:
             return state
     }

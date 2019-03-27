@@ -11,6 +11,8 @@ import { FacebookProvider, LoginButton } from 'react-facebook';
 import {connect} from "react-redux";
 import {doLoginRequest} from '../../actions/authentification_actions'
 
+import {Link} from "react-router-dom";
+
 class Login extends Component {
 
     constructor (props) {
@@ -51,80 +53,91 @@ class Login extends Component {
     render() {
         const {email, password, validated, submitted} = this.state
         return (
-            <Container>
-                <Row className="justify-content-md-center">
-                    <Col xs={10} md={6}>
-                        <Card className="LoginCard">
-                            <Card.Body>
-                                <Form
-                                    name="loginForm"
-                                    noValidate
-                                    validated={validated}
-                                    onSubmit={this.handleSubmit}>
-                                    <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>E-mail</Form.Label>
-                                        <Form.Control
-                                            type="email"
-                                            placeholder="Saisir votre e-mail "
-                                            name="email"
-                                            value={email}
-                                            required
-                                            onChange={this.handleChange}
-                                        />
-                                        <Form.Control.Feedback type="invalid">
-                                            Veuillez saisir votre e-mail
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
+            <div className="loginBody">
+                <Container>
+                    <Row className="justify-content-md-center">
+                        <Col xs={10} md={6}>
+                            <Card className="LoginCard">
+                                <Card.Body>
+                                    <Form
+                                        name="loginForm"
+                                        noValidate
+                                        validated={validated}
+                                        onSubmit={this.handleSubmit}>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>E-mail</Form.Label>
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Saisir votre e-mail "
+                                                name="email"
+                                                value={email}
+                                                required
+                                                onChange={this.handleChange}
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                Veuillez saisir votre e-mail
+                                            </Form.Control.Feedback>
+                                        </Form.Group>
 
-                                    <Form.Group controlId="formBasicPassword" >
-                                        <Form.Label>Mot de passe</Form.Label>
-                                        <Form.Control
-                                            type="password"
-                                            placeholder="Mot de passe"
-                                            name="password"
-                                            value={password}
-                                            required
-                                            onChange={this.handleChange}
-                                        />
-                                        <Form.Control.Feedback type="invalid">
-                                            Veuillez saisir votre mot de passe
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Button variant="success" type="submit" size="lg" block>
-                                        Se connecter
-                                    </Button>
-                                    <hr/>
-                                    <Container>
-                                        <Row>
-                                            <Col>
-                                                <GoogleLogin
-                                                    onSuccess={'responseGoogle'}
-                                                    onFailure={'responseGoogle'}
-                                                    clientId={1212121212121}
-                                                    buttonText="Google"
-                                                    className="socialButton"
-                                                />
-                                            </Col>
-                                            <Col>
-                                                <FacebookProvider appId="123456789">
-                                                    <LoginButton
-                                                        className="fbButton socialButton"
-                                                        scope="email"
-                                                        onCompleted={this.handleResponse}
-                                                        onError={this.handleError}
-                                                    >
-                                                        <span><i className="fab fa-facebook-f"></i> Facebook</span>
-                                                    </LoginButton>
-                                                </FacebookProvider>
-                                            </Col>
-                                        </Row>
-                                    </Container>
-                                </Form>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                                        <Form.Group controlId="formBasicPassword" >
+                                            <Form.Label>Mot de passe</Form.Label>
+                                            <Form.Control
+                                                type="password"
+                                                placeholder="Mot de passe"
+                                                name="password"
+                                                value={password}
+                                                required
+                                                onChange={this.handleChange}
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                Veuillez saisir votre mot de passe
+                                            </Form.Control.Feedback>
+                                        </Form.Group>
+                                        <Button variant="success" type="submit" size="lg" block>
+                                            Se connecter
+                                        </Button>
+                                        <hr/>
+                                        <Container>
+                                            <Row>
+                                                <Col>
+                                                    <GoogleLogin
+                                                        onSuccess={'responseGoogle'}
+                                                        onFailure={'responseGoogle'}
+                                                        clientId={1212121212121}
+                                                        buttonText="Google"
+                                                        className="socialButton"
+                                                    />
+                                                </Col>
+                                                <Col>
+                                                    <FacebookProvider appId="123456789">
+                                                        <LoginButton
+                                                            className="fbButton socialButton"
+                                                            scope="email"
+                                                            onCompleted={this.handleResponse}
+                                                            onError={this.handleError}
+                                                        >
+                                                            <span><i className="fab fa-facebook-f"></i> Facebook</span>
+                                                        </LoginButton>
+                                                    </FacebookProvider>
+                                                </Col>
+                                            </Row>
+                                        </Container>
+                                    </Form>
+                                </Card.Body>
+                                <div className="buttonSignUp">
+                                    <Link
+                                        className="btn-3 btn-3e"
+                                        role="button"
+                                        to="/signup"
+                                    >
+                                        Créer un compte
+                                    </Link>
+                                </div>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }

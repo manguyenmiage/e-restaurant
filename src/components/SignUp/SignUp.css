@@ -1,0 +1,14 @@
+.SignUpCard {
+    margin-top: 100px;
+}
+.error {
+    color: red;
+}
+.input-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.addOn{
+    background-color: transparent;
+    border-collapse: collapse;
+}

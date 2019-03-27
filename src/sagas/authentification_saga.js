@@ -1,7 +1,8 @@
 import { call, put } from 'redux-saga/effects';
-import {doLoginFaillure, doLoginSuccess} from "../actions/authentification_actions";
-import {login} from '../api/authentification_api'
+import {doLoginFaillure, doLoginSuccess, doRegisterSuccess, doRegisterFaillure} from "../actions/authentification_actions";
+import {login, register} from '../api/authentification_api'
 
+//login action
 function *handleLoginRequest(action) {
     try{
         const {user} = action
@@ -13,6 +14,19 @@ function *handleLoginRequest(action) {
 
 }
 
+//register action
+function *handleRegisterRequest(action) {
+    try{
+        const {user} = action
+        const result = yield call (register, user)
+        yield put(doRegisterSuccess(result))
+    }catch (e) {
+        yield put(doRegisterFaillure(e))
+    }
+
+}
+
 export {
-    handleLoginRequest
+    handleLoginRequest,
+    handleRegisterRequest,
 }

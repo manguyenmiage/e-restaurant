@@ -12,11 +12,23 @@ function doLogout (user) {
 function doLoginSuccess (user) {
     return {type: authentification_constants.LOGIN_SUCCESS, user}
 }
+function doRegister (user) {
+    return {type: authentification_constants.REGISTER_REQUEST, user}
+}
+function doRegisterSuccess (user) {
+    return {type: authentification_constants.REGISTER_SUCCESS, user}
+}
+function doRegisterFaillure (user) {
+    return {type: authentification_constants.REGISTER_FAILLURE, user}
+}
 
 export {
     doLoginRequest,
     doLoginSuccess,
     doLoginFaillure,
+    doRegister,
+    doRegisterSuccess,
+    doRegisterFaillure,
     doLogout
 }
 
