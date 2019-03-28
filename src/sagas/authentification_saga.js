@@ -13,7 +13,6 @@ function *handleLoginRequest(action) {
     }
 
 }
-
 //register action
 function *handleRegisterRequest(action) {
     try{

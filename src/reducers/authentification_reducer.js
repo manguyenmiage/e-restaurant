@@ -1,18 +1,25 @@
 import {authentification_constants} from "../constants/authentification_constants";
-
+import history from '../history'
 const INITIAL_STATE = {
     loggingIn : false,
     loggedIn : false,
+    logginFail: false,
     isRegistered : false,
     isRegisterFail: false,
-    user : null
+    user : null,
+    msg : ''
 }
 
-const applyLogInSuccess = (state, action) => ({
-    loggingIn: false,
-    loggedIn : true,
-    user : action.user
-})
+const applyLogInSuccess = (state, action) => {
+    history.push('/profil')
+    return{
+        loggingIn: false,
+        loggedIn : true,
+        logginFail: false,
+        user : action.user
+    }
+}
+
 
 const applyLogInRequest = (state, action) => ({
     loggingIn: true,
@@ -25,6 +32,12 @@ const applyRegisterSuccess = (state, action) => ({
     user: action.user
 })
 
+const applyLogInFaillure = (state, action) => ({
+    logginFail: true,
+    user: action.user,
+    msgError : 'L\'e-mail et/ou le mot de passe ne sont pas corrects.'
+})
+
 
 function authentificationReducer (state = INITIAL_STATE, action) {
 
@@ -33,6 +46,8 @@ function authentificationReducer (state = INITIAL_STATE, action) {
             return applyLogInRequest(state, action)
         case authentification_constants.LOGIN_SUCCESS :
             return applyLogInSuccess(state, action)
+        case authentification_constants.LOGIN_FAILLURE :
+            return applyLogInFaillure(state, action)
         case authentification_constants.REGISTER_SUCCESS :
             return applyRegisterSuccess(state, action)
         default:

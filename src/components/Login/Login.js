@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {doLoginRequest} from '../../actions/authentification_actions'
 
 import {Link} from "react-router-dom";
+import {Alert} from "react-bootstrap";
 
 class Login extends Component {
 
@@ -42,7 +43,6 @@ class Login extends Component {
 
         const {email, password} = this.state
         this.props.loginRequest({email, password})
-
     }
 
     handleChange = (event) => {
@@ -93,6 +93,11 @@ class Login extends Component {
                                                 Veuillez saisir votre mot de passe
                                             </Form.Control.Feedback>
                                         </Form.Group>
+                                        {console.log(this.props)}
+                                        {this.props.logginFail ?
+                                            <Alert  variant='danger'>
+                                                {this.props.msgError}
+                                            </Alert>: ''}
                                         <Button variant="success" type="submit" size="lg" block>
                                             Se connecter
                                         </Button>
@@ -141,8 +146,12 @@ class Login extends Component {
         )
     }
 }
-const LoginForm = connect(null, mapDispatchToProps)(Login)
-export default LoginForm
+
+const mapStateToProps = state => ({
+    loggedIn : state.authentificationState.loggedIn,
+    logginFail : state.authentificationState.logginFail,
+    msgError : state.authentificationState.msgError
+})
 
 
 function mapDispatchToProps(disptach) {
@@ -150,4 +159,7 @@ function mapDispatchToProps(disptach) {
         loginRequest : user => disptach (doLoginRequest(user))
     }
 }
+
+const LoginForm = connect(mapStateToProps, mapDispatchToProps)(Login)
+export default (LoginForm)
 
