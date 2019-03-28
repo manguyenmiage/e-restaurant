@@ -1,5 +1,6 @@
 import {authentification_constants} from "../constants/authentification_constants";
 import history from '../history'
+
 const INITIAL_STATE = {
     loggingIn : false,
     loggedIn : false,
@@ -27,10 +28,14 @@ const applyLogInRequest = (state, action) => ({
     user : action.user
 })
 
-const applyRegisterSuccess = (state, action) => ({
-    isRegistered: true,
-    user: action.user
-})
+const applyRegisterSuccess = (state, action) => {
+    history.push('/login')
+    return {
+        isRegistered: true,
+        user: action.user
+    }
+
+}
 
 const applyLogInFaillure = (state, action) => ({
     logginFail: true,

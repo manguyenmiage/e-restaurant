@@ -1,34 +1,30 @@
-import React, {Component, Fragment} from 'react'
-import RegisterForm from "./FormSignUp";
-import Card from "react-bootstrap/Card";
-import './SignUp.css'
-import Row from "react-bootstrap/Row";
+import React , {Component} from 'react'
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import LoginForm from "./LoginForm";
 
-export default class SignUp extends Component {
-    constructor(props) {
-        super(props)
+export default class LoginPage  extends Component {
+    constructor (props) {
+        super (props)
         this.state = {}
     }
-
-    render() {
-
+    render () {
         return (
-            <Fragment>
+            <div className="loginBody">
                 <Container>
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6}>
-                            <Card className="SignUpCard">
+                            <Card className="LoginCard">
                                 <Card.Body>
-                                    <RegisterForm/>
+                                    <LoginForm/>
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
                 </Container>
-            </Fragment>
-
+            </div>
         )
     }
 }

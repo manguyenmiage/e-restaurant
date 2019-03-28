@@ -17,7 +17,6 @@ class FormSignUp extends Component {
         console.log(values)
         this.props.registerRequest({values})
         actions.setSubmitting(false);
-        history.push('/')
     }
     render() {
         return (
