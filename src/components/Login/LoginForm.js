@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import './Login.css'
 import {GoogleLogin} from 'react-google-login';
 import {connect} from "react-redux";
 import {doLoginRequest} from '../../actions/authentification_actions'
-
+import AuthButton from '../Button/AuthButton'
 import {Link} from "react-router-dom";
 import {Alert} from "react-bootstrap";
 import {Formik} from "formik";
 import schema from "./SchemaValidation";
-
 class LoginForm extends Component {
 
     constructor(props) {
@@ -68,17 +66,12 @@ class LoginForm extends Component {
                                     {props.errors.email}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            {console.log(this.props)}
                             {this.props.logginFail ?
                                 <Alert variant='danger'>
                                     {this.props.msgError}
                                 </Alert> : ''}
-                            <Button variant="success" type="submit" size="lg" block>
-                                Se connecter
-                                {this.props.loggingIn && <span className="loading"><i className="fas fa-spinner  fa-spin"></i></span>}
-                            </Button>
+                            <AuthButton label="Se connecter" loggingIn={this.props.loggingIn}/>
                             <hr/>
-
                             <GoogleLogin
                                 onSuccess={'responseGoogle'}
                                 onFailure={'responseGoogle'}

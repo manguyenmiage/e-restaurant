@@ -20,8 +20,10 @@ function *handleRegisterRequest(action) {
     try{
         const {user} = action
         const result = yield call (register, user)
+        yield delay(5000);
         yield put(doRegisterSuccess(result))
     }catch (e) {
+        yield delay(5000);
         yield put(doRegisterFaillure(e))
     }
 

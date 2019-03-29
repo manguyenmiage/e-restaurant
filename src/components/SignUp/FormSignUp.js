@@ -1,12 +1,11 @@
 import {Formik} from 'formik';
 import React, {Component} from 'react'
 import './SignUp.css'
-import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
 import schema from './SchemaValidation'
 import {doRegister} from "../../actions/authentification_actions";
 import {connect} from "react-redux";
-import history from '../../history'
+import AuthButton from "../Button/AuthButton";
 
 class FormSignUp extends Component {
 
@@ -102,9 +101,8 @@ class FormSignUp extends Component {
                                 </Form.Control.Feedback>
                             </InputGroup>
 
-                            <Button variant="success" type="submit" size="lg" block>
-                                Créer mon compte
-                            </Button>
+                            <AuthButton label="Créer un compte" isRegistering={this.props.isRegistering}/>
+
                         </Form>
                     )}
                 />
@@ -114,7 +112,8 @@ class FormSignUp extends Component {
 }
 
 const mapStateToProps = state => ({
-    isRegistered : state.isRegistered
+    isRegistered : state.authentificationState.isRegistered,
+    isRegistering : state.authentificationState.isRegistering
 })
 
 
