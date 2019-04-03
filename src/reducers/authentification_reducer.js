@@ -48,6 +48,14 @@ const applyLogInFaillure = (state, action) => ({
     msgError : 'L\'e-mail et/ou le mot de passe ne sont pas corrects.'
 })
 
+const applyLogOutSuccess = (state, action) => {
+    history.push('/login')
+    return {
+        loggedIn : false
+    }
+
+}
+
 
 function authentificationReducer (state = INITIAL_STATE, action) {
 
@@ -67,7 +75,8 @@ function authentificationReducer (state = INITIAL_STATE, action) {
         //Listener register success
         case authentification_constants.REGISTER_SUCCESS :
             return applyRegisterSuccess(state, action)
-
+        case authentification_constants.LOGOUT_REQUEST :
+            return applyLogOutSuccess(state, action)
         default:
             return state
     }

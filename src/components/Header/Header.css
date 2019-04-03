@@ -7,7 +7,12 @@
     float: right;
     position: absolute;
 }
-
+.logoutButton {
+    right: 60px;
+    left: auto;
+    float: right;
+    position: absolute;
+}
 html, body {
     height: 100%;
 }

@@ -6,8 +6,8 @@ function doLoginRequest (user) {
 function doLoginFaillure (user) {
     return {type: authentification_constants.LOGIN_FAILLURE, user}
 }
-function doLogout (user) {
-    return {type: authentification_constants.LOGOUT, user}
+function doLogoutRequest () {
+    return {type: authentification_constants.LOGOUT_REQUEST}
 }
 function doLoginSuccess (user) {
     return {type: authentification_constants.LOGIN_SUCCESS, user}
@@ -29,6 +29,6 @@ export {
     doRegister,
     doRegisterSuccess,
     doRegisterFaillure,
-    doLogout
+    doLogoutRequest
 }
 

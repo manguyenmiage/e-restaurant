@@ -4,6 +4,7 @@ import './Header.css'
 import trident from '../../assets/img/trident.png'
 import {connect} from "react-redux";
 import SignOutButton from "../Button/SignOutButton";
+import {doLogoutRequest} from "../../actions/authentification_actions";
 
 
 class Header extends Component {
@@ -11,6 +12,11 @@ class Header extends Component {
     constructor (props) {
         super(props)
     }
+
+    signOut = () => {
+        this.props.logoutRequest()
+    }
+
     renderHeaderUnAuthentificated = () => (
         <div>
             <Navbar bg="light" expand="lg" fixed="top">
@@ -37,12 +43,13 @@ class Header extends Component {
                     <span></span>
                 </Navbar.Brand>
                 <div className="logoutButton">
-                    <SignOutButton label="Se déconnecter"/>
+                    <SignOutButton label="Se déconnecter" action={this.signOut}/>
                 </div>
 
             </Navbar>
         </div>
     )
+
 
     render() {
        return this.props.loggedIn ? this.renderHeaderAuthentificated() : this.renderHeaderUnAuthentificated()
@@ -53,7 +60,13 @@ const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
 })
 
+function mapDispatchToProps(disptach) {
+    return {
+        logoutRequest: () => disptach(doLogoutRequest())
+    }
+}
 
-const HeaderConnect = connect(mapStateToProps)(Header)
+
+const HeaderConnect = connect(mapStateToProps, mapDispatchToProps)(Header)
 
 export default HeaderConnect
