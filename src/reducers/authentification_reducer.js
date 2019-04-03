@@ -41,7 +41,6 @@ const applyRegisterSuccess = (state, action) => {
     }
 
 }
-
 const applyLogInFaillure = (state, action) => ({
     logginFail: true,
     user: action.user,
@@ -51,12 +50,9 @@ const applyLogInFaillure = (state, action) => ({
 const applyLogOutSuccess = (state, action) => {
     history.push('/login')
     return {
-        loggedIn : false
+        loggedIn : false,
     }
-
 }
-
-
 function authentificationReducer (state = INITIAL_STATE, action) {
 
     switch (action.type) {

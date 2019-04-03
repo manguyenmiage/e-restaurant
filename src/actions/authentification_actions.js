@@ -29,6 +29,6 @@ export {
     doRegister,
     doRegisterSuccess,
     doRegisterFaillure,
-    doLogoutRequest
+    doLogoutRequest,
 }
 
