@@ -13,7 +13,6 @@ const INITIAL_STATE = {
 }
 
 const applyLogInSuccess = (state, action) => {
-    history.push('/profil')
     return{
         loggingIn: false,
         loggedIn : true,

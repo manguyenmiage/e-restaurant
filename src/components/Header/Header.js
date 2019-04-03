@@ -1,16 +1,21 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Navbar from "react-bootstrap/Navbar";
 import './Header.css'
 import trident from '../../assets/img/trident.png'
+import {connect} from "react-redux";
+import SignOutButton from "../Button/SignOutButton";
 
 
+class Header extends Component {
 
-const header = () => {
-    return (
+    constructor (props) {
+        super(props)
+    }
+    renderHeaderUnAuthentificated = () => (
         <div>
             <Navbar bg="light" expand="lg" fixed="top">
                 <Navbar.Brand href="/">
-                    <img  className="logo" src={trident} alt="logo"/>
+                    <img className="logo" src={trident} alt="logo"/>
                     <span></span>
                 </Navbar.Brand>
                 <a href="/login" className="cta loginButton">
@@ -23,7 +28,32 @@ const header = () => {
             </Navbar>
         </div>
     )
+
+    renderHeaderAuthentificated = () => (
+        <div>
+            <Navbar bg="light" expand="lg" fixed="top">
+                <Navbar.Brand href="/">
+                    <img className="logo" src={trident} alt="logo"/>
+                    <span></span>
+                </Navbar.Brand>
+                <div className="logoutButton">
+                    <SignOutButton label="Se déconnecter"/>
+                </div>
+
+            </Navbar>
+        </div>
+    )
+
+    render() {
+       return this.props.loggedIn ? this.renderHeaderAuthentificated() : this.renderHeaderUnAuthentificated()
+    }
 }
 
+const mapStateToProps = state => ({
+    loggedIn: state.authentificationState.loggedIn,
+})
 
-export default header
+
+const HeaderConnect = connect(mapStateToProps)(Header)
+
+export default HeaderConnect

@@ -9,12 +9,25 @@ import {Link} from "react-router-dom";
 import {Alert} from "react-bootstrap";
 import {Formik} from "formik";
 import schema from "./SchemaValidation";
+import {withRouter} from "react-router-dom";
+import history from '../../history'
+
 class LoginForm extends Component {
 
     constructor(props) {
         super(props)
     }
 
+    componentDidMount() {
+        if (this.props.loggedIn) {
+            history.push('/profil')
+        }
+    }
+    componentDidUpdate(){
+        if (this.props.loggedIn) {
+            history.push('/profil')
+        }
+    }
     handleSubmit = (values, actions) => {
         const {email, password} = values
         this.props.loginRequest({email, password})
@@ -111,5 +124,5 @@ function mapDispatchToProps(disptach) {
 }
 
 const FormLogin = connect(mapStateToProps, mapDispatchToProps)(LoginForm)
-export default (FormLogin)
+export default withRouter(FormLogin)
 

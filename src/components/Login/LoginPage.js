@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import LoginForm from "./LoginForm";
 
-export default class LoginPage  extends Component {
+class LoginPage  extends Component {
     constructor (props) {
         super (props)
         this.state = {}
@@ -28,3 +28,4 @@ export default class LoginPage  extends Component {
         )
     }
 }
+export default LoginPage
