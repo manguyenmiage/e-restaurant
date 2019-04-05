@@ -19,7 +19,16 @@ import {connect} from "react-redux";
 import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
 import trident from "../../assets/img/trident.png";
-import Navbar from "react-bootstrap/Navbar";
+import Drawer from '@material-ui/core/Drawer';
+import Cancel from '@material-ui/icons/CancelRounded';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+
+const drawerWidth = 340;
 
 const styles = theme => ({
     root: {
@@ -27,6 +36,20 @@ const styles = theme => ({
     },
     bar:{
         height: '80px'
+    },
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
     },
     grow: {
         flexGrow: 1,
@@ -39,6 +62,38 @@ const styles = theme => ({
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
+        },
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+    },
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 8px',
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+    },
+    drawerOpen: {
+        width: drawerWidth,
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerClose: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        overflowX: 'hidden',
+        width: theme.spacing.unit * 7 + 1,
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing.unit * 9 + 1,
         },
     },
     search: {
@@ -98,6 +153,7 @@ class CustomizedAppBar extends React.Component {
     state = {
         anchorEl: null,
         mobileMoreAnchorEl: null,
+        openDrawer: false
     };
 
     handleProfileMenuOpen = event => {
@@ -117,8 +173,16 @@ class CustomizedAppBar extends React.Component {
         this.setState({ mobileMoreAnchorEl: null });
     };
 
+    handleDrawerOpen = () => {
+        this.setState({ openDrawer: true });
+    };
+
+    handleDrawerClose = () => {
+        this.setState({ openDrawer: false });
+    };
+
     render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { anchorEl, mobileMoreAnchorEl, openDrawer } = this.state;
         const { classes } = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -147,7 +211,7 @@ class CustomizedAppBar extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static" color="inherit" className={classes.bar}>
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                        <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
                         <Link to="/">
@@ -193,6 +257,42 @@ class CustomizedAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="temporary"
+                    anchor="left"
+                    transitionDuration={500}
+                    open={openDrawer}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    ModalProps={{ onBackdropClick: this.handleDrawerClose }}
+                    SlideProps={{direction: 'right'}}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton onClick={this.handleDrawerClose}>
+                            <Cancel />
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Divider />
+                    <List>
+                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Drawer>
                 {renderAccoutMenu}
                 {renderAccoutMobileMenu}
             </div>
