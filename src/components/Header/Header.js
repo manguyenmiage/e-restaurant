@@ -3,8 +3,6 @@ import Navbar from "react-bootstrap/Navbar";
 import './Header.css'
 import trident from '../../assets/img/trident.png'
 import {connect} from "react-redux";
-import SignOutButton from "../Button/SignOutButton";
-import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
 import CustomizedAppBar from "../AppBar/CustomizedAppBar";
 
@@ -56,13 +54,6 @@ const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
 })
 
-function mapDispatchToProps(disptach) {
-    return {
-        logoutRequest: () => disptach(doLogoutRequest())
-    }
-}
-
-
-const HeaderConnect = connect(mapStateToProps, mapDispatchToProps)(Header)
+const HeaderConnect = connect(mapStateToProps)(Header)
 
 export default HeaderConnect

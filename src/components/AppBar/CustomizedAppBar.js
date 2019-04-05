@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -16,10 +13,20 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AccountMenu from "../Menu/AccountMenu";
+import AccountMenuMobile from "../Menu/AccountMenuMobile";
+import {connect} from "react-redux";
+import {doLogoutRequest} from "../../actions/authentification_actions";
+import {Link} from "react-router-dom";
+import trident from "../../assets/img/trident.png";
+import Navbar from "react-bootstrap/Navbar";
 
 const styles = theme => ({
     root: {
         width: '100%',
+    },
+    bar:{
+        height: '80px'
     },
     grow: {
         flexGrow: 1,
@@ -70,7 +77,7 @@ const styles = theme => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: 200,
+            width: '300%',
         },
     },
     sectionDesktop: {
@@ -116,68 +123,42 @@ class CustomizedAppBar extends React.Component {
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-        const renderMenu = (
-            <Menu
+        const renderAccoutMenu = (
+            <AccountMenu
                 anchorEl={anchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={isMenuOpen}
-                onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-            </Menu>
+                handleClose={this.handleMenuClose}
+                handleLogout={this.props.logoutRequest}
+            />
         );
 
-        const renderMobileMenu = (
-            <Menu
+        const renderAccoutMobileMenu = (
+            <AccountMenuMobile
                 anchorEl={mobileMoreAnchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={isMobileMenuOpen}
                 onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <MailIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Messages</p>
-                </MenuItem>
-                <MenuItem onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={11} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Notifications</p>
-                </MenuItem>
-                <MenuItem onClick={this.handleProfileMenuOpen}>
-                    <IconButton color="inherit">
-                        <AccountCircle />
-                    </IconButton>
-                    <p>Profile</p>
-                </MenuItem>
-            </Menu>
+                handleMobileMenuClose={this.handleMobileMenuClose}
+                handleProfileMenuOpen={this.handleProfileMenuOpen}
+                handleLogout={this.props.logoutRequest}
+            />
         );
 
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar position="static" color="inherit" className={classes.bar}>
                     <Toolbar>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
-                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            Material-UI
-                        </Typography>
+                        <Link to="/">
+                            <img className="logo" src={trident} alt="logo"/>
+                        </Link>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
                             </div>
                             <InputBase
-                                placeholder="Search…"
+                                placeholder="Rechercher…"
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -212,8 +193,8 @@ class CustomizedAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderMenu}
-                {renderMobileMenu}
+                {renderAccoutMenu}
+                {renderAccoutMobileMenu}
             </div>
         );
     }
@@ -222,5 +203,14 @@ class CustomizedAppBar extends React.Component {
 CustomizedAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
+const mapStateToProps = state => ({
+    loggedIn: state.authentificationState.loggedIn,
+})
+function mapDispatchToProps(disptach) {
+    return {
+        logoutRequest: () => disptach(doLogoutRequest())
+    }
+}
 
-export default withStyles(styles)(CustomizedAppBar);
+const CustomizedAppBarConnect = connect(mapStateToProps, mapDispatchToProps)(CustomizedAppBar)
+export default withStyles(styles)(CustomizedAppBarConnect);
