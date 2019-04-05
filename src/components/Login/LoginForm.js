@@ -20,12 +20,12 @@ class LoginForm extends Component {
 
     componentDidMount() {
         if (this.props.loggedIn) {
-            history.push('/profil')
+            history.push('/dashboard')
         }
     }
     componentDidUpdate(){
         if (this.props.loggedIn) {
-            history.push('/profil')
+            history.push('/dashboard')
         }
     }
     handleSubmit = (values, actions) => {

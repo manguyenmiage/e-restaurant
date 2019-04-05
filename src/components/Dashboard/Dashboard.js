@@ -1,28 +1,25 @@
 import React , {Component} from 'react'
-import './Profil.css'
+import './Dashboard.css'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import {withRouter} from "react-router-dom";
-import Snackbar from '@material-ui/core/Snackbar';
 import {connect} from "react-redux";
-import {doSnackBarClose} from "../../actions/profile_actions";
+import {doSnackBarClose} from "../../actions/dashboard_actions";
 import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
 
- class Profil  extends Component {
+ class Dashboard  extends Component {
     constructor (props) {
         super (props)
         this.state = {
             open: null,
-            vertical: 'top',
-            horizontal: 'center',
+            vertical: 'bottom',
+            horizontal: 'left',
         }
     }
 
      componentDidMount() {
-        console.log(this.props)
-
          if (this.props.loggedIn && !this.props.showSnackBar) {
              this.setState({open : true})
          } else {
@@ -44,7 +41,7 @@ import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
                         <Col xs={12} md={6}>
                             <Card className="LoginCard">
                                 <Card.Body>
-                                   PROFIL
+                                   DASHBOARD
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -55,7 +52,7 @@ import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
                     anchorOrigin={{ vertical, horizontal }}
                     open={open}
                     onClose={this.handleClose}
-                    message='Vous êtes connecté'
+                    message={'Bienvennue ' + this.props.user.email}
                 />
             </div>
         )
@@ -63,7 +60,8 @@ import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
 }
 const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
-    showSnackBar: state.profileState.showSnackBar,
+    user : state.authentificationState.user,
+    showSnackBar: state.dashboardState.showSnackBar,
 })
 function mapDispatchToProps(disptach) {
     return {
@@ -71,5 +69,5 @@ function mapDispatchToProps(disptach) {
     }
 }
 
-const ProfilConnect = connect(mapStateToProps, mapDispatchToProps)(Profil)
-export default withRouter(ProfilConnect)
+const DashBoardConnect = connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default withRouter(DashBoardConnect)

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import SignOutButton from "../Button/SignOutButton";
 import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
+import CustomizedAppBar from "../AppBar/CustomizedAppBar";
 
 
 class Header extends Component {
@@ -18,8 +19,10 @@ class Header extends Component {
         this.props.logoutRequest()
     }
 
+    //Header unauthentificated
     renderHeaderUnAuthentificated = () => (
         <div>
+            <CustomizedAppBar/>
             <Navbar bg="light" expand="lg" fixed="top">
                 <Link to="/">
                     <img className="logo" src={trident} alt="logo"/>
@@ -32,20 +35,14 @@ class Header extends Component {
                     </svg>
                 </Link>
             </Navbar>
+
         </div>
     )
 
+    //Header authentificated
     renderHeaderAuthentificated = () => (
         <div>
-            <Navbar bg="light" expand="lg" fixed="top">
-                <Link to="/">
-                    <img className="logo" src={trident} alt="logo"/>
-                </Link>
-                <div className="logoutButton">
-                    <SignOutButton label="Se déconnecter" action={this.signOut}/>
-                </div>
-
-            </Navbar>
+            <CustomizedAppBar/>
         </div>
     )
 
