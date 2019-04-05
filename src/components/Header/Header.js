@@ -5,6 +5,7 @@ import trident from '../../assets/img/trident.png'
 import {connect} from "react-redux";
 import SignOutButton from "../Button/SignOutButton";
 import {doLogoutRequest} from "../../actions/authentification_actions";
+import {Link} from "react-router-dom";
 
 
 class Header extends Component {
@@ -20,17 +21,16 @@ class Header extends Component {
     renderHeaderUnAuthentificated = () => (
         <div>
             <Navbar bg="light" expand="lg" fixed="top">
-                <Navbar.Brand href="/">
+                <Link to="/">
                     <img className="logo" src={trident} alt="logo"/>
-                    <span></span>
-                </Navbar.Brand>
-                <a href="/login" className="cta loginButton">
+                </Link>
+                <Link to="/login" className="cta loginButton">
                     <span>Se connecter</span>
                     <svg width="13px" height="10px" viewBox="0 0 13 10">
                         <path d="M1,5 L11,5"></path>
                         <polyline points="8 1 12 5 8 9"></polyline>
                     </svg>
-                </a>
+                </Link>
             </Navbar>
         </div>
     )
@@ -38,10 +38,9 @@ class Header extends Component {
     renderHeaderAuthentificated = () => (
         <div>
             <Navbar bg="light" expand="lg" fixed="top">
-                <Navbar.Brand href="/">
+                <Link to="/">
                     <img className="logo" src={trident} alt="logo"/>
-                    <span></span>
-                </Navbar.Brand>
+                </Link>
                 <div className="logoutButton">
                     <SignOutButton label="Se déconnecter" action={this.signOut}/>
                 </div>

@@ -8,6 +8,7 @@ import {withRouter} from "react-router-dom";
 import Snackbar from '@material-ui/core/Snackbar';
 import {connect} from "react-redux";
 import {doSnackBarClose} from "../../actions/profile_actions";
+import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
 
  class Profil  extends Component {
     constructor (props) {
@@ -49,14 +50,12 @@ import {doSnackBarClose} from "../../actions/profile_actions";
                         </Col>
                     </Row>
                 </Container>
-                <Snackbar
+                <CustomizedSnackbars
+                    variant = "success"
                     anchorOrigin={{ vertical, horizontal }}
                     open={open}
                     onClose={this.handleClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id">Vous êtes connecté</span>}
+                    message='Vous êtes connecté'
                 />
             </div>
         )
