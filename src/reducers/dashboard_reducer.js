@@ -18,8 +18,7 @@ const resetShowSnackBar = (state, action) => {
 }
 
 
-function profileReducer (state = INITIAL_STATE, action) {
-
+function dashBoardReducer (state = INITIAL_STATE, action) {
     switch (action.type) {
         case dashboard_constants.SNACK_BAR_CLOSE :
             return applySnackBarClose(state, action)
@@ -29,4 +28,4 @@ function profileReducer (state = INITIAL_STATE, action) {
             return state
     }
 }
-export default profileReducer
+export default dashBoardReducer

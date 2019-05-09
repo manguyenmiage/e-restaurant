@@ -13,10 +13,6 @@ class Header extends Component {
         super(props)
     }
 
-    signOut = () => {
-        this.props.logoutRequest()
-    }
-
     //Header unauthentificated
     renderHeaderUnAuthentificated = () => (
         <div>

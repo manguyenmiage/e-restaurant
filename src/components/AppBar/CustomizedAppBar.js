@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
+import Directions from '@material-ui/icons/Directions';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountMenu from "../Menu/AccountMenu";
@@ -26,7 +27,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 
 const drawerWidth = 340;
 
@@ -35,7 +35,7 @@ const styles = theme => ({
         width: '100%',
     },
     bar:{
-        height: '80px'
+        height: '80px',
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -214,7 +214,7 @@ class CustomizedAppBar extends React.Component {
                         <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <img className="logo" src={trident} alt="logo"/>
                         </Link>
                         <div className={classes.search}>
@@ -276,22 +276,14 @@ class CustomizedAppBar extends React.Component {
                     </div>
                     <Divider />
                     <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                        <ListItem button key={'Start a trip'}>
+                            <ListItemIcon> <Directions color="primary" /></ListItemIcon>
+                            <Link to="/start-trip" style={{ textDecoration: 'none' }} onClick={this.handleDrawerClose}>
+                                <ListItemText primary={'Démarres ton voyage !'} />
+                            </Link>
+                        </ListItem>
                     </List>
                     <Divider />
-                    <List>
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
-                    </List>
                 </Drawer>
                 {renderAccoutMenu}
                 {renderAccoutMobileMenu}
