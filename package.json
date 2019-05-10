@@ -1,9 +1,10 @@
 {
-  "name": "e-restaurant",
+  "name": "trip-overflow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/icons": "^3.0.2",
+    "dotenv": "^8.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-facebook": "^7.0.6",
