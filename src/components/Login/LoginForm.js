@@ -14,10 +14,6 @@ import history from '../../history'
 
 class LoginForm extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     componentDidMount() {
         if (this.props.loggedIn) {
             history.push('/dashboard')

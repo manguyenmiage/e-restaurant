@@ -94,9 +94,6 @@ const styles2 = theme => ({
 });
 
 class CustomizedSnackbars extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const { classes, anchorOrigin, variant, message, open, onClose  } = this.props

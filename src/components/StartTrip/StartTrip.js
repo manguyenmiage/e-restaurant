@@ -1,7 +1,8 @@
 import React , {Component} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import FranceTripMap from '../TripMap/FranceTripMap'
+import TripMap from '../TripMap/TripMap'
+import FormStartTrip from './FormStartTrip'
 import './StartTrip.css'
 
 export default class StartTrip  extends Component {
@@ -29,12 +30,12 @@ export default class StartTrip  extends Component {
                 <Grid container spacing={0}>
                     <Grid item xs={4}>
                         <Paper className="paperCustom">
-
+                            <FormStartTrip/>
                         </Paper>
                     </Grid>
                     <Grid item xs={8}>
                         <Paper className="paperCustom">
-                            <FranceTripMap
+                            <TripMap
                                 isMarkerShown
                                 listPos = {listPos}
                             />

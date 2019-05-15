@@ -9,9 +9,6 @@ import AuthButton from "../Button/AuthButton";
 
 class FormSignUp extends Component {
 
-    constructor(props) {
-        super(props)
-    }
     handleSubmit = (values, actions) => {
         console.log(values)
         this.props.registerRequest({values})

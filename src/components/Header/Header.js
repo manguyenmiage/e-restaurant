@@ -8,11 +8,6 @@ import CustomizedAppBar from "../AppBar/CustomizedAppBar";
 
 
 class Header extends Component {
-
-    constructor (props) {
-        super(props)
-    }
-
     //Header unauthentificated
     renderHeaderUnAuthentificated = () => (
         <div>

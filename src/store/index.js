@@ -12,6 +12,7 @@ const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const persistConfig = {
     key: 'root',
+    blacklist: ['createTripState'],
     storage,
 }
 
@@ -20,7 +21,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 const  store = createStore(
     persistedReducer,
     storeEnhancers(
-        applyMiddleware(saga, logger)
+        applyMiddleware(saga, logger),
     )
 
 )

@@ -277,7 +277,7 @@ class CustomizedAppBar extends React.Component {
                     <Divider />
                     <List>
                         <ListItem button key={'Start a trip'}>
-                            <ListItemIcon> <Directions color="primary" /></ListItemIcon>
+                            <ListItemIcon><Directions color="primary" /></ListItemIcon>
                             <Link to="/start-trip" style={{ textDecoration: 'none' }} onClick={this.handleDrawerClose}>
                                 <ListItemText primary={'Démarres ton voyage !'} />
                             </Link>
