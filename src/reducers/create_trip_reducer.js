@@ -7,9 +7,34 @@ const INITIAL_STATE = {
         france : {
             name : 'France',
             coords : {
-                lat: 46.567249,
-                lng:2.455230
-            }
+                lat: 48.856614,
+                lng:2.3522219
+            },
+            url : 'https://www.countryflags.io/fr/flat/32.png'
+        },
+        spain : {
+            name : 'Espagne',
+            coords : {
+                lat: 40.4167754,
+                lng: -3.7037902
+            },
+            url : 'https://www.countryflags.io/es/flat/32.png'
+        },
+        italy : {
+            name : 'Italie',
+            coords : {
+                lat: 41.902784,
+                lng: 12.496366
+            },
+            url : 'https://www.countryflags.io/it/flat/32.png'
+        },
+        holland : {
+            name : 'Pay-bas',
+            coords : {
+                lat: 52.370216,
+                lng:4.895168
+            },
+            url : 'https://www.countryflags.io/nl/flat/32.png'
         },
 
     },

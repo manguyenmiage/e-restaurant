@@ -21,10 +21,6 @@ const TripMap = compose(
         mapElement: <div style={{height: `100%`}}/>,
     }),
     withScriptjs,
-    /* withStateHandlers(initialState,{
-             'setMarkerFrance' : setMarkerFrance()
-         }
-     ),*/
     withGoogleMap,
     lifecycle({
 
@@ -37,8 +33,8 @@ const TripMap = compose(
                 }
             }
         }
-        const length = props.destinations.length
-        const lastDestinationsState = props.destinations[length -1]
+        const lastDestinationsState = props.destinations[props.destinations.length -1]
+
         return (
             <GoogleMap
                 defaultZoom={props.zoom}
@@ -46,17 +42,54 @@ const TripMap = compose(
             >
 
                 { lastDestinationsState && lastDestinationsState.map((destination) => {
-                    return destination && destination.toString() === 'France' && (
-                        <MarkerWithLabel
-                            key={destination.toString()}
-                            position={props.coordinates.france.coords}
-                            labelAnchor={new window.google.maps.Point(0, 0)}
-                            labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
-                        >
-                            <div>{props.coordinates.france.name}</div>
-                        </MarkerWithLabel>
+                    if (destination && destination.toString() === 'France')
+                        return (
+                            <MarkerWithLabel
+                                key={destination.toString()}
+                                position={props.coordinates.france.coords}
+                                labelAnchor={new window.google.maps.Point(0, 0)}
+                                icon= {props.coordinates.france.url}
+                            >
+                                <div>{props.coordinates.france.name}</div>
+                            </MarkerWithLabel>
 
-                    )
+                        )
+                    if (destination && destination.toString() === 'Espagne')
+                        return (
+                            <MarkerWithLabel
+                                key={destination.toString()}
+                                position={props.coordinates.spain.coords}
+                                labelAnchor={new window.google.maps.Point(0, 0)}
+                                icon= {props.coordinates.spain.url}
+                            >
+                                <div>{props.coordinates.spain.name}</div>
+                            </MarkerWithLabel>
+
+                        )
+                    if (destination && destination.toString() === 'Italie')
+                        return (
+                            <MarkerWithLabel
+                                key={destination.toString()}
+                                position={props.coordinates.italy.coords}
+                                labelAnchor={new window.google.maps.Point(0, 0)}
+                                icon= {props.coordinates.italy.url}
+                            >
+                                <div>{props.coordinates.italy.name}</div>
+                            </MarkerWithLabel>
+
+                        )
+                    if (destination && destination.toString() === 'Pays-bas')
+                        return (
+                            <MarkerWithLabel
+                                key={destination.toString()}
+                                position={props.coordinates.holland.coords}
+                                labelAnchor={new window.google.maps.Point(0, 0)}
+                                icon= {props.coordinates.holland.url}
+                            >
+                                <div>{props.coordinates.holland.name}</div>
+                            </MarkerWithLabel>
+
+                        )
                 })}
                 {/*{props.directions && props.directions.map((direction) => <DirectionsRenderer directions={direction} options = {rendererOptions}  />)}*/}
             </GoogleMap>
