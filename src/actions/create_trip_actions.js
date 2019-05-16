@@ -7,10 +7,8 @@ function doCreateItineary (itineary) {
 function doSelectDestination (destination) {
     return {type: create_trip_constants.SELECT_DESTINATION, destination}
 }
-
-
 export {
     doCreateItineary,
-    doSelectDestination
+    doSelectDestination,
 }
 

@@ -1,16 +1,17 @@
-import React , {Component} from 'react'
+import React, {Component} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TripMap from '../TripMap/TripMap'
 import FormStartTrip from './FormStartTrip'
 import './StartTrip.css'
 
-export default class StartTrip  extends Component {
-    constructor (props) {
-        super (props)
+export default class StartTrip extends Component {
+    constructor(props) {
+        super(props)
         this.state = {}
     }
-    render () {
+
+    render() {
         var listPos = [
             {
                 arriveeLat: 48.856614,
@@ -29,17 +30,14 @@ export default class StartTrip  extends Component {
             <div className="paperCustom">
                 <Grid container spacing={0}>
                     <Grid item xs={4}>
-                        <Paper className="paperCustom">
-                            <FormStartTrip/>
-                        </Paper>
+
+                        <FormStartTrip/>
                     </Grid>
                     <Grid item xs={8}>
-                        <Paper className="paperCustom">
-                            <TripMap
-                                isMarkerShown
-                                listPos = {listPos}
-                            />
-                        </Paper>
+                        <TripMap
+                            isMarkerShown
+                            listPos={listPos}
+                        />
                     </Grid>
                 </Grid>
             </div>

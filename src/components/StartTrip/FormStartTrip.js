@@ -50,25 +50,12 @@ const MenuProps = {
     },
 };
 
-/*const addMenuItem = (key, value, values) => (
-    <MenuItem key={key} value={value.name}>
-        <Checkbox checked={values.destinations.indexOf(value.name) > -1}/>
-        <ListItemText primary={value.name}/>
-    </MenuItem>
-)
-
-const test = (destinations, values) => {
-    Object.entries(destinations).forEach(
-        ([key, value]) => {
-            addMenuItem (key, value, values)
-        })
-}*/
 class FormStartTrip  extends Component {
 
     handleClickDestination = (event) => {
         this.props.selectDestination(event.target.value)
+        //if (event.target.value == 'France') this.props.placeMarkerFrance()
     }
-
     render () {
         const { classes } = this.props;
         return (
@@ -119,7 +106,8 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(disptach) {
     return {
         createItineary : itineary => disptach (doCreateItineary(itineary)),
-        selectDestination : destination => disptach (doSelectDestination(destination)),
+        selectDestination : destination => destination && disptach (doSelectDestination(destination)),
+
     }
 }
 const FormStartTripConnect = connect(mapStateToProps, mapDispatchToProps)(FormStartTrip)

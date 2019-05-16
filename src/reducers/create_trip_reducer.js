@@ -13,7 +13,7 @@ const INITIAL_STATE = {
         },
 
     },
-    showMarkerFrance : false,
+    markerFranceAdded : false,
     listItineary:[]
 }
 
