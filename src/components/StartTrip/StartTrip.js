@@ -27,12 +27,11 @@ export default class StartTrip extends Component {
         ];
         return (
             <div className="paperCustom">
-                <Grid container spacing={0}>
-                    <Grid item xs={4}>
-
+                <Grid container spacing={24}>
+                    <Grid item xs={4} sm={3}>
                         <FormStartTrip/>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={8} sm={9}>
                         <TripMap
                             isMarkerShown
                             listPos={listPos}
