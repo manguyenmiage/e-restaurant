@@ -46,7 +46,6 @@ const TripMap = compose(
             >
 
                 { lastDestinationsState && lastDestinationsState.map((destination) => {
-                    console.log(props.destinations)
                     return destination && destination.toString() === 'France' && (
                         <MarkerWithLabel
                             key={destination.toString()}
