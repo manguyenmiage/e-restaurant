@@ -209,7 +209,7 @@ class CustomizedAppBar extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="static" color="inherit" className={classes.bar}>
+                <AppBar position="fixed" color="inherit" className={classes.bar}>
                     <Toolbar>
                         <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />

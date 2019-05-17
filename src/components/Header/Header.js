@@ -11,7 +11,6 @@ class Header extends Component {
     //Header unauthentificated
     renderHeaderUnAuthentificated = () => (
         <div>
-            <CustomizedAppBar/>
             <Navbar bg="light" expand="lg" fixed="top">
                 <Link to="/">
                     <img className="logo" src={trident} alt="logo"/>
