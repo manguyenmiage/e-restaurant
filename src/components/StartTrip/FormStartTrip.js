@@ -15,13 +15,17 @@ import * as PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {doCreateItineary, doSelectDestination} from "../../actions/create_trip_actions";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormGroup from "react-bootstrap/es/FormGroup";
 import green from '@material-ui/core/colors/green';
+import moment from 'moment';
+import 'react-dates/lib/css/_datepicker.css';
+import DateRangePickerWrapper from "../DatePicker/DateRangePickerWrapper";
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -71,21 +75,11 @@ class FormStartTrip extends Component {
         this.state = {
             startDate: new Date(),
             endDate : new Date(),
-            destinations : []
+            destinations : [],
+            date: moment()
         };
     }
 
-    handleChangeStartDate = (date) => {
-        this.setState({
-            startDate: date
-        });
-    }
-
-    handleChangeEndDate = (date) => {
-        this.setState({
-            startDate: date
-        });
-    }
     handleClickDestination = (event) => {
         this.props.selectDestination(event.target.value)
     }
@@ -102,7 +96,8 @@ class FormStartTrip extends Component {
                 initialValues={{
                     destinations: [],
                     themes: [],
-                    housingType : []
+                    housingType : [],
+                    focused : false
                 }}
 
                 onSubmit={this.handleSubmit}
@@ -110,29 +105,16 @@ class FormStartTrip extends Component {
                     <div>
                         <Container>
                             <Row>
-                                <Col xs={12} md={4}>
+                                <Col xs={12} md={12}>
                                     <FormControl className={classes.formControl}>
                                         <label>
                                             <Typography variant="overline" gutterBottom>
-                                                Date de départ
+                                                Date du voyage
                                             </Typography>
                                         </label>
-                                        <DatePicker
-                                            selected={this.state.startDate}
-                                            onChange={this.handleChangeStartDate}
-                                        />
-                                    </FormControl>
-                                </Col>
-                                <Col xs={12} md={4}>
-                                    <FormControl className={classes.formControl}>
-                                        <label>
-                                            <Typography variant="overline" gutterBottom>
-                                                Date de retour
-                                            </Typography>
-                                        </label>
-                                        <DatePicker
-                                            selected={this.state.endDate}
-                                            onChange={this.handleChangeEndDate}
+                                        <DateRangePickerWrapper
+                                            startDateId="idStartDate"
+                                            endDateId="idEndDate"
                                         />
                                     </FormControl>
                                 </Col>
