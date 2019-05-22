@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import Menu from "@material-ui/core/Menu/Menu";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
 import {DateRangePicker} from "react-date-range/";
 import {DateRange} from "react-date-range";
-import { format, addDays } from 'date-fns';
+import {format, addDays} from 'date-fns';
 import * as rdrLocales from 'react-date-range/src/locale';
+import Popover from "@material-ui/core/Popover/Popover";
 
 var navigatorLanguage = window.navigator.languages;
 
-export default class DatesRangeMenu extends Component {
+export default class DatesRangePopover extends Component {
 
     state = {
         dateRange: {
@@ -37,17 +37,21 @@ export default class DatesRangeMenu extends Component {
         });
     }
 
-    render () {
+    render() {
         return (
-            <Menu
+            <Popover
                 anchorEl={this.props.anchorEl}
-                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                transformOrigin={{vertical: 'top', horizontal: 'right'}}
                 open={this.props.open}
                 onClose={this.props.handleClose}
-                style={{marginLeft: '40px', marginTop: '60px'}}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
             >
-
                 <DateRange
                     onChange={this.handleRangeChange.bind(this, 'dateRangeWithDisabled')}
                     moveRangeOnFirstSelection={false}
@@ -59,8 +63,8 @@ export default class DatesRangeMenu extends Component {
                     direction="horizontal"
                     locale={rdrLocales[navigatorLanguage[1]]}
                 />
-            </Menu>
 
+            </Popover>
         )
     }
 

@@ -2,19 +2,27 @@
 const destinations = {
    france : {
        id : 1,
-       name : 'France'
+       name : 'France',
+       description : 'Dotis ex coniunx statum nomine solvitur apud in in sexus est post uxoresque sexus atque tabernaculum discessura est eos et.',
+       url:'https://www.countryflags.io/fr/flat/32.png'
    },
     spain: {
         id : 2,
-        name : 'Espagne'
+        name : 'Espagne',
+        description : 'Dotis ex coniunx statum nomine solvitur apud in in sexus est post uxoresque sexus atque tabernaculum discessura est eos et.',
+        url:'https://www.countryflags.io/es/flat/32.png'
     },
     italy : {
         id : 3,
-        name : 'Italie'
+        name : 'Italie',
+        description : 'Dotis ex coniunx statum nomine solvitur apud in in sexus est post uxoresque sexus atque tabernaculum discessura est eos et..',
+        url:'https://www.countryflags.io/it/flat/32.png'
     },
     holland : {
         id : 4,
-        name : 'Pays-bas'
+        name : 'Pays-bas',
+        description : 'Dotis ex coniunx statum nomine solvitur apud in in sexus est post uxoresque sexus atque tabernaculum discessura est eos et..',
+        url:'https://www.countryflags.io/nl/flat/32.png'
     },
 }
 
