@@ -1,18 +1,19 @@
+
 const destinations = {
    france : {
        id : 1,
        name : 'France'
    },
     spain: {
-        id : 1,
+        id : 2,
         name : 'Espagne'
     },
     italy : {
-        id : 1,
+        id : 3,
         name : 'Italie'
     },
     holland : {
-        id : 1,
+        id : 4,
         name : 'Pays-bas'
     },
 }
@@ -74,5 +75,5 @@ const housingType = {
 export  {
     destinations,
     themes,
-    housingType
+    housingType,
 }

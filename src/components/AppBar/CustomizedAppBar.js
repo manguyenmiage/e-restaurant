@@ -11,7 +11,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
-import Directions from '@material-ui/icons/Directions';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountMenu from "../Menu/AccountMenu";
@@ -20,34 +19,31 @@ import {connect} from "react-redux";
 import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
 import trident from "../../assets/img/trident.png";
-import Drawer from '@material-ui/core/Drawer';
-import Cancel from '@material-ui/icons/CancelRounded';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
+import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography';
 
-const drawerWidth = 340;
+const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
         width: '100%',
+        display: 'flex',
     },
-    bar:{
+  /*  bar:{
         height: '80px',
-    },
+    },*/
     appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
     appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
@@ -62,38 +58,6 @@ const styles = theme => ({
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
-        },
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 8px',
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    drawerClose: {
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        overflowX: 'hidden',
-        width: theme.spacing.unit * 7 + 1,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing.unit * 9 + 1,
         },
     },
     search: {
@@ -209,7 +173,9 @@ class CustomizedAppBar extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="fixed" color="inherit" className={classes.bar}>
+                <AppBar position="fixed" color="inherit"  className={classNames(classes.appBar, {
+                    [classes.appBarShift]: this.state.open,
+                })}>
                     <Toolbar>
                         <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
@@ -257,34 +223,6 @@ class CustomizedAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <Drawer
-                    className={classes.drawer}
-                    variant="temporary"
-                    anchor="left"
-                    transitionDuration={500}
-                    open={openDrawer}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                    ModalProps={{ onBackdropClick: this.handleDrawerClose }}
-                    SlideProps={{direction: 'right'}}
-                >
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            <Cancel />
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <ListItem button key={'Start a trip'}>
-                            <ListItemIcon><Directions color="primary" /></ListItemIcon>
-                            <Link to="/start-trip" style={{ textDecoration: 'none' }} onClick={this.handleDrawerClose}>
-                                <ListItemText primary={'Démarres ton voyage !'} />
-                            </Link>
-                        </ListItem>
-                    </List>
-                    <Divider />
-                </Drawer>
                 {renderAccoutMenu}
                 {renderAccoutMobileMenu}
             </div>

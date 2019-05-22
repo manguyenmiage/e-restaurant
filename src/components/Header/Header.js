@@ -4,7 +4,7 @@ import './Header.css'
 import trident from '../../assets/img/trident.png'
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import CustomizedAppBar from "../AppBar/CustomizedAppBar";
+import MiniDrawerConnect from "../Drawer/MiniDrawer";
 
 
 class Header extends Component {
@@ -30,7 +30,7 @@ class Header extends Component {
     //Header authentificated
     renderHeaderAuthentificated = () => (
         <div>
-            <CustomizedAppBar/>
+            <MiniDrawerConnect/>
         </div>
     )
 

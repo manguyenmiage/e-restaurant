@@ -24,8 +24,13 @@ import FormGroup from "react-bootstrap/es/FormGroup";
 import green from '@material-ui/core/colors/green';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
-import DateRangePickerWrapper from "../DatePicker/DateRangePickerWrapper";
+import {DateRange, DateRangePicker} from "react-date-range";
 
+const selectionRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+}
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -104,6 +109,14 @@ class FormStartTrip extends Component {
                 render={({submitForm, values, handleChange}) => (
                     <div>
                         <Container>
+                            <DateRange
+                                startDate="21/05/2019"
+                                endDate="25/05/2019"
+                            />
+                            <DateRangePicker
+                                ranges={[selectionRange]}
+                                /*onChange={handleSelect}*/
+                            />
                             <Row>
                                 <Col xs={12} md={12}>
                                     <FormControl className={classes.formControl}>
