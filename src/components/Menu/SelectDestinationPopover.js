@@ -2,16 +2,13 @@ import React, {Component} from 'react'
 import {FormControl, FormControlLabel, Typography, withStyles} from "@material-ui/core";
 import {destinations} from "../../mock/trip";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
-import green from "@material-ui/core/colors/green";
 import Popover from "@material-ui/core/Popover/Popover";
 
 const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        color: green[600],
         '&$checked': {
-            color: green[500],
         },
     },
 
@@ -39,7 +36,7 @@ const styles = theme => ({
     },
 });
 
-class SelectionMenu extends Component {
+class SelectDestinationPopover extends Component {
 
     state = {}
 
@@ -80,6 +77,7 @@ class SelectionMenu extends Component {
                                                 root: classes.root,
                                                 checked: classes.checked,
                                             }}
+                                            color="default"
                                         />
                                     }
                                     label={destinations[key].name}
@@ -103,4 +101,4 @@ class SelectionMenu extends Component {
 
 }
 
-export default withStyles(styles, {withTheme: true})(SelectionMenu);
+export default withStyles(styles, {withTheme: true})(SelectDestinationPopover);
