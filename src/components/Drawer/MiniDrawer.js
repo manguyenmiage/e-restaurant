@@ -37,9 +37,9 @@ import {doLogoutRequest} from "../../actions/authentification_actions";
 import connect from "react-redux/es/connect/connect";
 import Tooltip from '@material-ui/core/Tooltip';
 import {Typography} from "@material-ui/core";
-import DatesRangePopover from "../Menu/DatesRangePopover";
-import SelectDestinationMenu from "../Menu/SelectDestinationPopover";
-import TravelersPopover from "../Menu/TravelersPopover";
+import DatesRangePopover from "../Popover/DatesRangePopover";
+import SelectDestinationMenu from "../Popover/SelectDestinationPopover";
+import TravelersPopover from "../Popover/TravelersPopover";
 
 const drawerWidth = 240;
 
