@@ -40,6 +40,7 @@ import {Typography} from "@material-ui/core";
 import DatesRangePopover from "../Popover/DatesRangePopover";
 import SelectDestinationMenu from "../Popover/SelectDestinationPopover";
 import TravelersPopover from "../Popover/TravelersPopover";
+import SelectHousingPopover from "../Popover/SelectHousingPopover";
 
 const drawerWidth = 240;
 
@@ -198,6 +199,7 @@ class MiniDrawer extends React.Component {
         anchorEl: null,
         anchorDatesRangeEl: null,
         anchorSelectDestinationEl: null,
+        anchorSelectHousingEl: null,
         anchorTravelersEl: null,
         mobileMoreAnchorEl: null,
     };
@@ -239,6 +241,18 @@ class MiniDrawer extends React.Component {
         });
     };
 
+    handleClickPopoverHousing = event => {
+        this.setState({
+            anchorSelectHousingEl: event.currentTarget,
+        });
+    };
+
+    handleClosePopoverHousing = () => {
+        this.setState({
+            anchorSelectHousingEl: null,
+        });
+    };
+
 
     handleMobileMenuOpen = event => {
         this.setState({mobileMoreAnchorEl: event.currentTarget});
@@ -259,12 +273,21 @@ class MiniDrawer extends React.Component {
     render() {
         const {classes, theme} = this.props;
 
-        const {anchorEl, mobileMoreAnchorEl, anchorDatesRangeEl, anchorSelectDestinationEl, anchorTravelersEl} = this.state;
+        const {
+            anchorEl,
+            mobileMoreAnchorEl,
+            anchorDatesRangeEl,
+            anchorSelectDestinationEl,
+            anchorTravelersEl,
+            anchorSelectHousingEl,
+        } = this.state;
+
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
         const isDatesRangeMenuOpen = Boolean(anchorDatesRangeEl);
         const isPopoverDestinationOpen = Boolean(anchorSelectDestinationEl);
         const isPopoverTravelersOpen = Boolean(anchorTravelersEl);
+        const isPopoverHousingOpen = Boolean(anchorSelectHousingEl);
 
         const renderAccoutMenu = (
             <AccountMenu
@@ -296,6 +319,14 @@ class MiniDrawer extends React.Component {
                 anchorEl={anchorTravelersEl}
                 open={isPopoverTravelersOpen }
                 handleClose={this.handleTravelersPopoverClose}
+            />
+        );
+
+        const renderHousingPopover = (
+            <SelectHousingPopover
+                anchorEl={anchorSelectHousingEl}
+                open={isPopoverHousingOpen}
+                handleClose={this.handleClosePopoverHousing}
             />
         );
 
@@ -430,7 +461,7 @@ class MiniDrawer extends React.Component {
                             if (menuTrip[labelMenu].name === LABEL_HOUSING)
                                 return (
                                     <Tooltip title={LABEL_HOUSING} aria-label={labelMenu} key={labelMenu}>
-                                        <ListItem button key={labelMenu}>
+                                        <ListItem button key={labelMenu} onClick={this.handleClickPopoverHousing}>
                                             <ListItemIcon><Hotel/></ListItemIcon>
                                             <ListItemText primary={
                                                 <Typography variant="button" gutterBottom>
@@ -477,6 +508,7 @@ class MiniDrawer extends React.Component {
                 {renderDatesRangePopover}
                 {renderSelectDestinationPopover}
                 {renderTravelersPopover}
+                {renderHousingPopover}
             </div>
         );
     }

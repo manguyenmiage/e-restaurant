@@ -5,28 +5,9 @@ import Row from "react-bootstrap/es/Row";
 import Col from "react-bootstrap/Col";
 import Typography from "@material-ui/core/es/Typography/Typography";
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import Button from "@material-ui/core/es/Button/Button";
 
 
 export default class TravelersPopover extends Component {
-
-    state = {
-        dateRange: {
-            selection: {
-                startDate: new Date(),
-                endDate: null,
-                key: 'selection',
-            },
-        },
-        dateRangeWithDisabled: {
-            selection: {
-                startDate: new Date(),
-                endDate: new Date(),
-                key: 'selection',
-            },
-        },
-    }
 
     render() {
 
