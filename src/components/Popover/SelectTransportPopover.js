@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {FormControl, FormControlLabel, Typography, withStyles} from "@material-ui/core";
-import {housingType} from "../../mock/trip";
+import {destinations} from "../../mock/trip";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Popover from "@material-ui/core/Popover/Popover";
-import FormGroup from "react-bootstrap/es/FormGroup";
 
 const styles = theme => ({
     root: {
@@ -16,8 +15,8 @@ const styles = theme => ({
     checked: {},
     formControl: {
         margin: theme.spacing.unit,
-        padding: 'auto 3px',
-        maxWidth:'350px'
+        minWidth: '96%',
+        padding: '3px 3px'
     },
     chips: {
         display: 'flex',
@@ -37,7 +36,7 @@ const styles = theme => ({
     },
 });
 
-class SelectHousingPopover extends Component {
+class SelectTransportPopover extends Component {
 
     state = {}
 
@@ -62,31 +61,35 @@ class SelectHousingPopover extends Component {
                 <FormControl className={classes.formControl}>
                     <label>
                         <Typography variant="overline" gutterBottom>
-                            TYPE DE LOGEMENT
+                            Destinations
                         </Typography>
                     </label>
-                    {Object.keys(housingType).map((key) =>
+                    {Object.keys(destinations).map((key) =>
                         (
-                            <FormGroup
-                                key={key}
-                            >
-                                {Object.keys(housingType[key]).map((subKey) =>
-                                    (<FormControlLabel
-                                        key={subKey}
-                                        control={
-                                            <Checkbox
-                                                key={subKey}
-                                                value="checkedG"
-                                                classes={{
-                                                    root: classes.root,
-                                                    checked: classes.checked,
-                                                }}
-                                                color="default"
-                                            />
-                                        }
-                                        label={housingType[key][subKey].name}
-                                    />))}
-                            </FormGroup>
+                            <div key={key}>
+                                <FormControlLabel
+                                    key={key}
+                                    control={
+                                        <Checkbox
+                                            key={key}
+                                            value="checkedG"
+                                            classes={{
+                                                root: classes.root,
+                                                checked: classes.checked,
+                                            }}
+                                            color="default"
+                                        />
+                                    }
+                                    label={destinations[key].name}
+                                />
+                                <img src={destinations[key].url} alt={key} style={{float:'right'}}/>
+                                <label>
+                                    <Typography variant="body1" gutterBottom>
+                                        {destinations[key].description}
+                                    </Typography>
+                                </label>
+                            </div>
+
                         )
                     )}
                 </FormControl>
@@ -98,4 +101,4 @@ class SelectHousingPopover extends Component {
 
 }
 
-export default withStyles(styles, {withTheme: true})(SelectHousingPopover);
+export default withStyles(styles, {withTheme: true})(SelectTransportPopover);

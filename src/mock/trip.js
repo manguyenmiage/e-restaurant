@@ -79,9 +79,31 @@ const housingType = {
     },
 }
 
+const transports = {
+    group1 : {
+        car : {
+            id : 1,
+            name : 'Logement entier'
+        },
+        train : {
+            id : 2,
+            name : 'Chambre privée'
+        },
+        autocar : {
+            id : 4,
+            name : 'Chambre d\'hôtel'
+        },
+        airplane : {
+            id : 3,
+            name : 'Chambre partagée'
+        },
+    },
+}
+
 
 export  {
     destinations,
     themes,
     housingType,
+    transport,
 }
