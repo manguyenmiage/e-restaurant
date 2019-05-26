@@ -79,23 +79,23 @@ const housingType = {
     },
 }
 
-const transports = {
-    group1 : {
+const transport = {
+    group2 : {
         car : {
             id : 1,
-            name : 'Logement entier'
+            name : 'Voiture'
         },
         train : {
             id : 2,
-            name : 'Chambre privée'
+            name : 'Train'
         },
         autocar : {
             id : 4,
-            name : 'Chambre d\'hôtel'
+            name : 'Autocar'
         },
         airplane : {
             id : 3,
-            name : 'Chambre partagée'
+            name : 'Avion'
         },
     },
 }

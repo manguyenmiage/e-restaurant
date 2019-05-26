@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {FormControl, FormControlLabel, Typography, withStyles} from "@material-ui/core";
-import {destinations} from "../../mock/trip";
+import {transport} from "../../mock/trip";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Popover from "@material-ui/core/Popover/Popover";
+import FormGroup from "react-bootstrap/es/FormGroup";
 
 const styles = theme => ({
     root: {
@@ -15,7 +16,6 @@ const styles = theme => ({
     checked: {},
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: '96%',
         padding: '3px 3px'
     },
     chips: {
@@ -28,8 +28,9 @@ const styles = theme => ({
     noLabel: {
         marginTop: theme.spacing.unit * 3,
     },
-    popCustom: {
-        width: '600px'
+    popCustomTransport: {
+        width: '600px',
+        minHeight: '500px'
     },
     rightIcon: {
         marginLeft: theme.spacing.unit,
@@ -37,8 +38,6 @@ const styles = theme => ({
 });
 
 class SelectTransportPopover extends Component {
-
-    state = {}
 
     render() {
         const {classes} = this.props;
@@ -56,40 +55,36 @@ class SelectTransportPopover extends Component {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
-                className={classes.popCustom}
+                className={classes.popCustomTransport}
             >
                 <FormControl className={classes.formControl}>
                     <label>
                         <Typography variant="overline" gutterBottom>
-                            Destinations
+                            Moyens de transports
                         </Typography>
                     </label>
-                    {Object.keys(destinations).map((key) =>
+                    {Object.keys(transport).map((key) =>
                         (
-                            <div key={key}>
-                                <FormControlLabel
-                                    key={key}
-                                    control={
-                                        <Checkbox
-                                            key={key}
-                                            value="checkedG"
-                                            classes={{
-                                                root: classes.root,
-                                                checked: classes.checked,
-                                            }}
-                                            color="default"
-                                        />
-                                    }
-                                    label={destinations[key].name}
-                                />
-                                <img src={destinations[key].url} alt={key} style={{float:'right'}}/>
-                                <label>
-                                    <Typography variant="body1" gutterBottom>
-                                        {destinations[key].description}
-                                    </Typography>
-                                </label>
-                            </div>
-
+                            <FormGroup
+                                key={key}
+                            >
+                                {Object.keys(transport[key]).map((subKey) =>
+                                    (<FormControlLabel
+                                        key={subKey}
+                                        control={
+                                            <Checkbox
+                                                key={subKey}
+                                                value="checkedG"
+                                                classes={{
+                                                    root: classes.root,
+                                                    checked: classes.checked,
+                                                }}
+                                                color="default"
+                                            />
+                                        }
+                                        label={transport[key][subKey].name}
+                                    />))}
+                            </FormGroup>
                         )
                     )}
                 </FormControl>
