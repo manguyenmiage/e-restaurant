@@ -16,7 +16,9 @@ const styles = theme => ({
     checked: {},
     formControl: {
         margin: theme.spacing.unit,
-        padding: '3px 3px'
+        padding: '3px 3px',
+        maxWidth:'600px',
+        minHeight: '130px'
     },
     chips: {
         display: 'flex',
@@ -27,10 +29,6 @@ const styles = theme => ({
     },
     noLabel: {
         marginTop: theme.spacing.unit * 3,
-    },
-    popCustomTransport: {
-        width: '600px',
-        minHeight: '500px'
     },
     rightIcon: {
         marginLeft: theme.spacing.unit,
@@ -55,7 +53,6 @@ class SelectTransportPopover extends Component {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
-                className={classes.popCustomTransport}
             >
                 <FormControl className={classes.formControl}>
                     <label>
