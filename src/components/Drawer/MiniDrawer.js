@@ -42,6 +42,7 @@ import SelectDestinationMenu from "../Popover/SelectDestinationPopover";
 import TravelersPopover from "../Popover/TravelersPopover";
 import SelectHousingPopover from "../Popover/SelectHousingPopover";
 import SelectTransportPopover from "../Popover/SelectTransportPopover";
+import SelectThemesPopover from "../Popover/SelectThemesPopover";
 
 const drawerWidth = 240;
 
@@ -202,6 +203,7 @@ class MiniDrawer extends React.Component {
         anchorSelectDestinationEl: null,
         anchorSelectHousingEl: null,
         anchorSelectTransportEl: null,
+        anchorSelectThemesEl: null,
         anchorTravelersEl: null,
         mobileMoreAnchorEl: null,
     };
@@ -267,6 +269,19 @@ class MiniDrawer extends React.Component {
         });
     };
 
+    handleClickPopoverThemes = event => {
+        this.setState({
+            anchorSelectThemesEl: event.currentTarget,
+        });
+    };
+
+    handleClosePopoverThemes = () => {
+        this.setState({
+            anchorSelectThemesEl: null,
+        });
+    };
+
+
 
     handleMobileMenuOpen = event => {
         this.setState({mobileMoreAnchorEl: event.currentTarget});
@@ -295,6 +310,7 @@ class MiniDrawer extends React.Component {
             anchorTravelersEl,
             anchorSelectHousingEl,
             anchorSelectTransportEl,
+            anchorSelectThemesEl,
         } = this.state;
 
         const isMenuOpen = Boolean(anchorEl);
@@ -304,6 +320,7 @@ class MiniDrawer extends React.Component {
         const isPopoverTravelersOpen = Boolean(anchorTravelersEl);
         const isPopoverHousingOpen = Boolean(anchorSelectHousingEl);
         const isPopoverTransportOpen = Boolean(anchorSelectTransportEl);
+        const isPopoverThemesOpen = Boolean(anchorSelectThemesEl);
 
         const renderAccoutMenu = (
             <AccountMenu
@@ -351,6 +368,14 @@ class MiniDrawer extends React.Component {
                 anchorEl={anchorSelectTransportEl}
                 open={isPopoverTransportOpen}
                 handleClose={this.handleClosePopoverTransport}
+            />
+        );
+
+        const renderThemesPopover = (
+            <SelectThemesPopover
+                anchorEl={anchorSelectThemesEl}
+                open={isPopoverThemesOpen}
+                handleClose={this.handleClosePopoverThemes}
             />
         );
 
@@ -513,7 +538,7 @@ class MiniDrawer extends React.Component {
                             if (menuTrip[labelMenu].name === LABEL_THEMES)
                                 return (
                                     <Tooltip title={LABEL_THEMES} aria-label={labelMenu} key={labelMenu}>
-                                        <ListItem button key={labelMenu}>
+                                        <ListItem button key={labelMenu} onClick={this.handleClickPopoverThemes}>
                                             <ListItemIcon><FavoriteBorder/></ListItemIcon>
                                             <ListItemText primary={
                                                 <Typography variant="button" gutterBottom>
@@ -534,6 +559,7 @@ class MiniDrawer extends React.Component {
                 {renderTravelersPopover}
                 {renderHousingPopover}
                 {renderTransportPopover}
+                {renderThemesPopover}
             </div>
         );
     }

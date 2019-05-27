@@ -5,7 +5,7 @@ import trident from '../../assets/img/trident.png'
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import MiniDrawerConnect from "../Drawer/MiniDrawer";
-
+import {withRouter} from "react-router-dom";
 
 class Header extends Component {
     //Header unauthentificated
@@ -36,7 +36,10 @@ class Header extends Component {
 
 
     render() {
-       return this.props.loggedIn ? this.renderHeaderAuthentificated() : this.renderHeaderUnAuthentificated()
+        if (this.props.loggedIn)
+            return this.renderHeaderAuthentificated()
+        else if (!this.props.loggedIn) 
+            return this.renderHeaderUnAuthentificated()
     }
 }
 
@@ -46,4 +49,4 @@ const mapStateToProps = state => ({
 
 const HeaderConnect = connect(mapStateToProps)(Header)
 
-export default HeaderConnect
+export default withRouter(HeaderConnect)

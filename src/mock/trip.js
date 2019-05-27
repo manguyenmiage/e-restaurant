@@ -27,30 +27,34 @@ const destinations = {
 }
 
 const themes =  {
-    architecture : {
-        id : 1,
-        name : 'Architecture'
+    group1 : {
+        architecture : {
+            id : 1,
+            name : 'Architecture'
+        },
+        gastronomique : {
+            id : 2,
+            name : 'Gastronomique'
+        },
+        nature : {
+            id : 3,
+            name : 'Nature et Paysage'
+        },
     },
-    gastronomique : {
-        id : 2,
-        name : 'Gastronomique'
-    },
-    nature : {
-        id : 3,
-        name : 'Nature et Paysage'
-    },
-    sports : {
-        id : 4,
-        name : 'Sports'
-    },
-     detente: {
-        id : 5,
-        name : 'Détente'
-    },
-    Shopping : {
-        id : 6,
-        name : 'Shopping'
-    },
+   group2: {
+       sports : {
+           id : 4,
+           name : 'Sports'
+       },
+       detente: {
+           id : 5,
+           name : 'Détente'
+       },
+       Shopping : {
+           id : 6,
+           name : 'Shopping'
+       },
+   }
 
 }
 
@@ -80,7 +84,7 @@ const housingType = {
 }
 
 const transport = {
-    group2 : {
+    group1 : {
         car : {
             id : 1,
             name : 'Voiture'
