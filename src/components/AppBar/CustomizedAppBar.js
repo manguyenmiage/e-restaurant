@@ -142,7 +142,7 @@ class CustomizedAppBar extends React.Component {
     };
 
     render() {
-        const { anchorEl, mobileMoreAnchorEl, openDrawer } = this.state;
+        const { anchorEl, mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

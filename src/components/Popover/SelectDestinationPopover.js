@@ -3,6 +3,7 @@ import {FormControl, FormControlLabel, Typography, withStyles} from "@material-u
 import {destinations} from "../../mock/trip";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Popover from "@material-ui/core/Popover/Popover";
+import withSizes from 'react-sizes'
 
 const styles = theme => ({
     root: {
@@ -42,8 +43,55 @@ class SelectDestinationPopover extends Component {
 
     render() {
         const {classes} = this.props;
-        return (
+        return this.props.isMobile ? (
 
+            <Popover
+                open={this.props.open}
+                anchorEl={this.props.anchorEl}
+                onClose={this.props.handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                className={classes.popCustom}
+            >
+                <FormControl className={classes.formControl}>
+                    <label>
+                        <Typography variant="overline" gutterBottom>
+                            Destinations
+                        </Typography>
+                    </label>
+                    {Object.keys(destinations).map((key) =>
+                        (
+                            <div key={key}>
+                                <FormControlLabel
+                                    key={key}
+                                    control={
+                                        <Checkbox
+                                            key={key}
+                                            value="checkedG"
+                                            classes={{
+                                                root: classes.root,
+                                                checked: classes.checked,
+                                            }}
+                                            color="default"
+                                        />
+                                    }
+                                    label={destinations[key].name}
+                                />
+                            </div>
+
+                        )
+                    )}
+                </FormControl>
+            </Popover>
+
+
+        ) : (
             <Popover
                 open={this.props.open}
                 anchorEl={this.props.anchorEl}
@@ -94,11 +142,14 @@ class SelectDestinationPopover extends Component {
                     )}
                 </FormControl>
             </Popover>
-
-
         )
     }
 
 }
+const mapSizesToProps = ({ width }) => ({
+    isMobile: width < 600,
+})
 
-export default withStyles(styles, {withTheme: true})(SelectDestinationPopover);
+
+const SelectDestinationPopoverWithStyle = withStyles(styles, {withTheme: true})(SelectDestinationPopover);
+export default withSizes(mapSizesToProps)(SelectDestinationPopoverWithStyle)

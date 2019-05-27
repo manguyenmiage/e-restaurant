@@ -44,7 +44,6 @@ class Header extends Component {
 
 
     render() {
-        console.log(this.props.location.pathname)
         if (this.props.loggedIn) {
             if(this.props.location.pathname === routes.START_TRIP)
                 return this.renderStartTripDrawer()

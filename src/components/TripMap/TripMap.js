@@ -1,4 +1,4 @@
-import {compose, withProps, lifecycle, withStateHandlers, withHandlers} from "recompose"
+import {compose, withProps, lifecycle} from "recompose"
 import {GoogleMap, withGoogleMap, withScriptjs, DirectionsRenderer} from "react-google-maps"
 import React from 'react'
 import {connect} from "react-redux";
