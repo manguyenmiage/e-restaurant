@@ -20,7 +20,6 @@ import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
 import trident from "../../assets/img/trident.png";
 import classNames from 'classnames';
-import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 240;
 
@@ -29,9 +28,6 @@ const styles = theme => ({
         width: '100%',
         display: 'flex',
     },
-  /*  bar:{
-        height: '80px',
-    },*/
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
@@ -174,10 +170,10 @@ class CustomizedAppBar extends React.Component {
         return (
             <div className={classes.root}>
                 <AppBar position="fixed" color="inherit"  className={classNames(classes.appBar, {
-                    [classes.appBarShift]: this.state.open,
+                    [classes.appBarShift]: this.props.open,
                 })}>
                     <Toolbar>
-                        <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                        <IconButton onClick={this.props.openDrawer} className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
                         <Link to="/dashboard">

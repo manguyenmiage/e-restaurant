@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import MiniDrawerConnect from "../Drawer/MiniDrawer";
 import {withRouter} from "react-router-dom";
+import {routes} from '../../constants/routes_constants'
+import CustomizedAppBarConnect from "../AppBar/CustomizedAppBar";
 
 class Header extends Component {
     //Header unauthentificated
@@ -28,17 +30,28 @@ class Header extends Component {
     )
 
     //Header authentificated
-    renderHeaderAuthentificated = () => (
+    renderStartTripDrawer = () => (
         <div>
             <MiniDrawerConnect/>
         </div>
     )
 
+    renderAppBar = () => (
+        <div>
+            <CustomizedAppBarConnect/>
+        </div>
+    )
+
 
     render() {
-        if (this.props.loggedIn)
-            return this.renderHeaderAuthentificated()
-        else if (!this.props.loggedIn) 
+        console.log(this.props.location.pathname)
+        if (this.props.loggedIn) {
+            if(this.props.location.pathname === routes.START_TRIP)
+                return this.renderStartTripDrawer()
+            else {
+                return this.renderAppBar()
+            }
+        } else if (!this.props.loggedIn)
             return this.renderHeaderUnAuthentificated()
     }
 }

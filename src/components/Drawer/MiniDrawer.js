@@ -6,32 +6,19 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Map from '@material-ui/icons/Map';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Hotel from '@material-ui/icons/Hotel';
 import Commute from '@material-ui/icons/Commute';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import CalendarToday from '@material-ui/icons/CalendarToday';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountMenu from "../Menu/AccountMenu";
 import AccountMenuMobile from "../Menu/AccountMenuMobile";
-import {Link} from "react-router-dom";
-import trident from "../../assets/img/trident.png";
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from "@material-ui/core/InputBase/InputBase";
-import Badge from "@material-ui/core/Badge/Badge";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import {doLogoutRequest} from "../../actions/authentification_actions";
 import connect from "react-redux/es/connect/connect";
@@ -43,6 +30,8 @@ import TravelersPopover from "../Popover/TravelersPopover";
 import SelectHousingPopover from "../Popover/SelectHousingPopover";
 import SelectTransportPopover from "../Popover/SelectTransportPopover";
 import SelectThemesPopover from "../Popover/SelectThemesPopover";
+import CustomizedAppBarConnect from "../AppBar/CustomizedAppBar";
+import IconButton from "@material-ui/core/IconButton";
 
 const drawerWidth = 240;
 
@@ -281,8 +270,6 @@ class MiniDrawer extends React.Component {
         });
     };
 
-
-
     handleMobileMenuOpen = event => {
         this.setState({mobileMoreAnchorEl: event.currentTarget});
     };
@@ -393,57 +380,10 @@ class MiniDrawer extends React.Component {
         return (
             <div className={classes.root}>
                 <CssBaseline/>
-                <AppBar position="fixed" color="inherit" className={classNames(classes.appBar, {
-                    [classes.appBarShift]: this.state.open,
-                })}>
-                    <Toolbar>
-                        <IconButton onClick={this.handleDrawerOpen} className={classes.menuButton} color="inherit"
-                                    aria-label="Open drawer">
-                            <MenuIcon/>
-                        </IconButton>
-                        <Link to="/dashboard">
-                            <img className="logo" src={trident} alt="logo"/>
-                        </Link>
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon/>
-                            </div>
-                            <InputBase
-                                placeholder="Rechercher…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                            />
-                        </div>
-                        <div className={classes.grow}/>
-                        <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={4} color="secondary">
-                                    <MailIcon/>
-                                </Badge>
-                            </IconButton>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={17} color="secondary">
-                                    <NotificationsIcon/>
-                                </Badge>
-                            </IconButton>
-                            <IconButton
-                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleProfileMenuOpen}
-                                color="inherit"
-                            >
-                                <AccountCircle/>
-                            </IconButton>
-                        </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                <MoreIcon/>
-                            </IconButton>
-                        </div>
-                    </Toolbar>
-                </AppBar>
+                <CustomizedAppBarConnect
+                    openDrawer={this.handleDrawerOpen}
+                    open={this.state.open}
+                />
                 <Drawer
                     variant="permanent"
                     className={classNames(classes.drawer, {
