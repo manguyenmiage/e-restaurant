@@ -173,7 +173,13 @@ class CustomizedAppBar extends React.Component {
                     [classes.appBarShift]: this.props.open,
                 })}>
                     <Toolbar>
-                        <IconButton onClick={this.props.openDrawer} className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                        <IconButton
+                            hidden={this.props.hidden}
+                            onClick={this.props.openDrawer}
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="Open drawer"
+                        >
                             <MenuIcon />
                         </IconButton>
                         <Link to="/dashboard">

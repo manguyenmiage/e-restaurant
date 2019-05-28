@@ -25,7 +25,7 @@ export default function AccountMenu (props) {
                 <ListItemIcon>
                     <AccountIcon />
                 </ListItemIcon>
-                <Link to="/profil">
+                <Link to="/account">
                     Mon profil
                 </Link>
             </MenuItem>

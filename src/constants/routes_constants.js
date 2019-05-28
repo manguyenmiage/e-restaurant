@@ -1,3 +1,4 @@
 export   const routes = {
-    START_TRIP : '/start-trip'
+    START_TRIP : '/start-trip',
+    USER_ACCOUNT : '/account',
 }

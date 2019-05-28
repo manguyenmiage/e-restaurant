@@ -8,6 +8,9 @@ import MiniDrawerConnect from "../Drawer/MiniDrawer";
 import {withRouter} from "react-router-dom";
 import {routes} from '../../constants/routes_constants'
 import CustomizedAppBarConnect from "../AppBar/CustomizedAppBar";
+import AccountDrawer from "../Drawer/AccountDrawer";
+import TabAccount from "../Tab/TabAccount";
+import withSizes from 'react-sizes'
 
 class Header extends Component {
     //Header unauthentificated
@@ -36,6 +39,19 @@ class Header extends Component {
         </div>
     )
 
+    renderAccountDrawer = () => (
+        <div>
+            <AccountDrawer/>
+        </div>
+    )
+
+    renderTabAccount = () => (
+        <div>
+            <CustomizedAppBarConnect/>
+            <TabAccount/>
+        </div>
+    )
+
     renderAppBar = () => (
         <div>
             <CustomizedAppBarConnect/>
@@ -45,20 +61,34 @@ class Header extends Component {
 
     render() {
         if (this.props.loggedIn) {
-            if(this.props.location.pathname === routes.START_TRIP)
-                return this.renderStartTripDrawer()
-            else {
-                return this.renderAppBar()
+            switch (this.props.location.pathname) {
+                case routes.START_TRIP:
+                    return this.renderStartTripDrawer()
+                case routes.USER_ACCOUNT:
+                    if(!this.props.isMobile)
+                        return this.renderAccountDrawer()
+                    else
+                        return this.renderTabAccount()
+                default:
+                    return this.renderAppBar()
+
             }
-        } else if (!this.props.loggedIn)
+        } else {
             return this.renderHeaderUnAuthentificated()
+        }
+
     }
 }
 
 const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
 })
+const mapSizesToProps = ({ width }) => ({
+    isMobile: width < 600,
+})
+
 
 const HeaderConnect = connect(mapStateToProps)(Header)
+const HeaderSize = withSizes(mapSizesToProps)(HeaderConnect)
 
-export default withRouter(HeaderConnect)
+export default withRouter(HeaderSize)
