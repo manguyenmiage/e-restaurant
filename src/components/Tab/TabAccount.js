@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+import PermContactCalendar from '@material-ui/icons/PermContactCalendar';
+import CardTravel from '@material-ui/icons/CardTravel';
+import HowToReg from '@material-ui/icons/HowToReg';
+import Settings from '@material-ui/icons/Settings';
 import Typography from '@material-ui/core/Typography';
+import ViewList from "@material-ui/icons/ViewList";
 
 function TabContainer(props) {
     return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
+        <Typography component="div" style={{padding: 8 * 3}}>
             {props.children}
         </Typography>
     );
@@ -32,8 +30,8 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     appBar: {
-        top: 'auto',
-        bottom: 0,
+        top: 55,
+        /*   bottom: 0,*/
     },
 });
 
@@ -47,7 +45,7 @@ function TabAccount(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" color="default"  className={classes.appBar}>
+            <AppBar position="fixed" color="default" className={classes.appBar}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -56,22 +54,43 @@ function TabAccount(props) {
                     indicatorColor="primary"
                     textColor="primary"
                 >
-                    <Tab label="Item One" icon={<PhoneIcon />} />
-                    <Tab label="Item Two" icon={<FavoriteIcon />} />
-                    <Tab label="Item Three" icon={<PersonPinIcon />} />
-                    <Tab label="Item Four" icon={<HelpIcon />} />
-                    <Tab label="Item Five" icon={<ShoppingBasket />} />
-                    <Tab label="Item Six" icon={<ThumbDown />} />
-                    <Tab label="Item Seven" icon={<ThumbUp />} />
+                    <Tab label="Accueil" icon={<ViewList/>}/>
+                    <Tab label="Informations personnelles" icon={<PermContactCalendar/>}/>
+                    <Tab label="Profil voyageur" icon={<CardTravel/>}/>
+                    <Tab label="Profil d'hôte" icon={<HowToReg/>}/>
+                    <Tab label="Configuration compte" icon={<Settings/>}/>
                 </Tabs>
             </AppBar>
-            {value === 0 && <TabContainer>Item One</TabContainer>}
-            {value === 1 && <TabContainer>Item Two</TabContainer>}
-            {value === 2 && <TabContainer>Item Three</TabContainer>}
-            {value === 3 && <TabContainer>Item Four</TabContainer>}
-            {value === 4 && <TabContainer>Item Five</TabContainer>}
-            {value === 5 && <TabContainer>Item Six</TabContainer>}
-            {value === 6 && <TabContainer>Item Seven</TabContainer>}
+            {value === 0 &&
+            <TabContainer>
+                <Typography variant={"overline"}>
+                    Accueil
+                </Typography>
+            </TabContainer>}
+            {value === 1 &&
+            <TabContainer>
+                <Typography variant={"overline"}>
+                    Informations personnelles
+                </Typography>
+            </TabContainer>}
+            {value === 2 &&
+            <TabContainer>
+                <Typography variant={"overline"}>
+                    Profil voyageur
+                </Typography>
+            </TabContainer>}
+            {value === 3 &&
+            <TabContainer>
+                <Typography variant={"overline"}>
+                    Profil d'hôte
+                </Typography>
+            </TabContainer>}
+            {value === 4 &&
+            <TabContainer>
+                <Typography variant={"overline"}>
+                    Configuration compte
+                </Typography>
+            </TabContainer>}
         </div>
     );
 }
