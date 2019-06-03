@@ -9,6 +9,7 @@ import StartTrip from "./StartTrip/StartTrip"
 import ProtectedRoute from './ProtectedRoute'
 import connect from "react-redux/es/connect/connect";
 import {withRouter} from "react-router-dom";
+import HomeAccount from "./UserAccount/HomeAccount";
 
 class RoutesCheck extends Component  {
 
@@ -17,6 +18,7 @@ class RoutesCheck extends Component  {
             <Switch>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} loggedIn={this.props.loggedIn}/>
                 <ProtectedRoute exact path="/start-trip" component={StartTrip} loggedIn={this.props.loggedIn}/>
+                <ProtectedRoute exact path="/account" component={HomeAccount} loggedIn={this.props.loggedIn}/>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={LoginPage}/>
                 <Route exact path="/signup" component={SignUpPage}/>

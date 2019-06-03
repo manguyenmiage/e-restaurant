@@ -6,7 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import {withStyles} from "@material-ui/core";
 import MenuItems from "../UserAccount/MenuItems";
 
-const drawerWidth = 240;
+const drawerWidth = 340;
 
 const styles = theme => ({
     root: {
