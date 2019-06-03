@@ -82,7 +82,7 @@ function TabAccount(props) {
             {value === 3 &&
             <TabContainer>
                 <Typography variant={"overline"}>
-                    Profil d'hôte
+                    Profil guide
                 </Typography>
             </TabContainer>}
             {value === 4 &&

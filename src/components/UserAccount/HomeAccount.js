@@ -7,13 +7,7 @@ import withSizes from 'react-sizes'
 import Avatar from '@material-ui/core/Avatar';
 import Typography from "@material-ui/core/Typography/Typography";
 import {connect} from "react-redux";
-import Card from "@material-ui/core/Card/Card";
-import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia/CardMedia";
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import CardActions from "@material-ui/core/CardActions/CardActions";
-import Button from "@material-ui/core/Button/Button";
-import {Link} from "react-router-dom";
+import AccountCard from "../CustomCard/AccountCard";
 
 const styles = theme => ({
     bScreen: {
@@ -61,107 +55,42 @@ class HomeAccount extends Component {
                     </Row>
                     <Row>
                         <Col md={6} xs={12} sm={12} >
-                            <Card className={classes.card}>
-                                <img src="/account/teamwork.png" style={{height: '180px', float:'right'}}/>
-                                <CardContent>
-                                    <Typography gutterBottom variat="h5" component="h2">
-                                        Lizard
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                        across all continents except Antarctica
-                                    </Typography>
-                                </CardContent>
-                                <CardActionArea>
-                                    <Link to="/">
-                                        <CardContent>
-                                            <Typography gutterBottom variat="h5" component="h2">
-                                                Gérer vos informations personnelles
-                                            </Typography>
-                                        </CardContent>
-
-                                    </Link>
-                                </CardActionArea>
-                            </Card>
+                           <AccountCard
+                                iconPath="/account/teamwork.png"
+                                title="Informations personnelles"
+                                body="Consulter vos données personnelles et apporter des modifications si besoin"
+                                labelAction="Gérer vos données personnelles"
+                                link="/"
+                           />
                         </Col>
                         <Col md={6} xs={12} sm={12}>
-                            <Card className={classes.card}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/static/images/cards/contemplative-reptile.jpg"
-                                        title="Contemplative Reptile"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                            across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
-                                    </Button>
-                                </CardActions>
-                            </Card>
+                            <AccountCard
+                                iconPath="/account/tourist.png"
+                                title="Profil voyageur"
+                                body="Consulter l'historique de vos voyages"
+                                labelAction="Visualiser vos voyages"
+                                link="/"
+                            />
                         </Col>
                     </Row>
                     <Row>
                         <Col md={6} xs={12} sm={12} >
-                            <Card className={classes.card}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/static/images/cards/contemplative-reptile.jpg"
-                                        title="Contemplative Reptile"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                            across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Link to='/'>
-                                        <Button size="small" color="primary">
-                                            Share
-                                        </Button>
-                                    </Link>
-                                </CardActions>
-                            </Card>
+                            <AccountCard
+                                iconPath="/account/lighthouse.png"
+                                title="Profil guide"
+                                body="Consulter et gérer vos services touristiques"
+                                labelAction="Gérer vos services"
+                                link="/"
+                            />
                         </Col>
                         <Col md={6} xs={12} sm={12} >
-                            <Card className={classes.card}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/static/images/cards/contemplative-reptile.jpg"
-                                        title="Contemplative Reptile"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                            across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
-                                    </Button>
-                                </CardActions>
-                            </Card>
+                            <AccountCard
+                                iconPath="/account/protection.png"
+                                title="Sécurité et configuration de votre compte"
+                                body="Consulter et paramétrer l'ensemble des configurations liées à votre compte"
+                                labelAction="Gérer votre compte"
+                                link="/"
+                            />
                         </Col>
                     </Row>
 

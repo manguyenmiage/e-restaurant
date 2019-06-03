@@ -29,7 +29,7 @@ const menuAccountItems = {
     },
     hostProfil: {
         id: 4,
-        name: 'Profil d\'hôte'
+        name: 'Profil guide'
     },
     configuration: {
         id: 5,

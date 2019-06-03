@@ -16,12 +16,12 @@ class LoginForm extends Component {
 
     componentDidMount() {
         if (this.props.loggedIn) {
-            history.push('/start-trip')
+            history.push('/start-trip/')
         }
     }
     componentDidUpdate(){
         if (this.props.loggedIn) {
-            history.push('/start-trip')
+            history.push('/start-trip/')
         }
     }
     handleSubmit = (values, actions) => {
