@@ -1,4 +1,5 @@
 import {authentification_constants} from "../constants/authentification_constants";
+import {user_data_mock} from "../mock/authentification_mock";
 import history from '../history'
 
 const INITIAL_STATE = {
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
     isRegisterFail: false,
     isRegistering: false,
     user : null,
+    resultDataUser : null,
     msg : ''
 }
 
@@ -17,7 +19,8 @@ const applyLogInSuccess = (state, action) => {
         loggingIn: false,
         loggedIn : true,
         logginFail: false,
-        user : action.user
+        user : action.user,
+        resultDataUser: user_data_mock
     }
 }
 

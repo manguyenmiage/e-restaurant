@@ -8,8 +8,10 @@ import HowToReg from "@material-ui/icons/HowToReg";
 import Settings from "@material-ui/icons/Settings";
 import PermContactCalendar from "@material-ui/icons/PermContactCalendar";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import {Typography} from "@material-ui/core";
+import {Typography, withStyles} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
+import {routes} from '../../constants/routes_constants'
 
 
 const menuAccountItems = {
@@ -41,24 +43,58 @@ const LABEL_HOSTPROFIL = menuAccountItems.hostProfil.name
 const LABEL_CONFIGURATION = menuAccountItems.configuration.name
 
 
-export default class MenuItems extends Component {
+const styles = theme => ({
+    navLinkActive: {
+        color: '#4285F4',
+        fontWeight:'bold'
+    },
+    navLink: {
+       // color: 'black',
+    },
+});
+
+const link = {
+    textDecoration: 'none'
+}
+
+class MenuItems extends Component {
     constructor(props) {
         super(props)
         this.state = {}
     }
 
     render() {
+        const {classes} = this.props;
         return (
             <div>
                 <List>
                     {Object.keys(menuAccountItems).map((labelMenu) => {
                         if (menuAccountItems[labelMenu].name === LABEL_HOME)
                             return (
-                                <Link to="/account" style={{textDecoration:'none'}}>
+                                <Link to="/account"
+                                      style={link}
+                                      key={menuAccountItems[labelMenu].name}>
                                     <ListItem button key={labelMenu}>
-                                        <ListItemIcon><ViewList/></ListItemIcon>
+                                        <ListItemIcon
+                                            className=
+                                                {
+                                                    this.props.location.pathname === routes.USER_ACCOUNT
+                                                        ? classes.navLinkActive
+                                                        : classes.navLink
+                                                }>
+                                            <ViewList/>
+                                        </ListItemIcon>
                                         <ListItemText primary={
-                                            <Typography variant="button" gutterBottom>
+                                            <Typography
+                                                variant="button"
+                                                gutterBottom
+                                                className=
+                                                    {
+                                                        this.props.location.pathname === routes.USER_ACCOUNT
+                                                            ? classes.navLinkActive
+                                                            : classes.navLink
+                                                    }
+                                            >
                                                 {LABEL_HOME}
                                             </Typography>
                                         }/>
@@ -69,9 +105,25 @@ export default class MenuItems extends Component {
                         if (menuAccountItems[labelMenu].name === LABEL_PERSONNALDATA)
                             return (
                                 <ListItem button key={labelMenu}>
-                                    <ListItemIcon><PermContactCalendar/></ListItemIcon>
+                                    <ListItemIcon
+                                        className=
+                                            {
+                                                this.props.location.pathname === routes.PERSONAL_INFO
+                                                    ? classes.navLinkActive
+                                                    : classes.navLink
+                                            }>
+                                        <PermContactCalendar/>
+                                    </ListItemIcon>
                                     <ListItemText primary={
-                                        <Typography variant="button" gutterBottom>
+                                        <Typography
+                                            variant="button"
+                                            gutterBottom
+                                            className=
+                                                {
+                                                    this.props.location.pathname === routes.PERSONAL_INFO
+                                                        ? classes.navLinkActive
+                                                        : classes.navLink
+                                                }>
                                             {LABEL_PERSONNALDATA}
                                         </Typography>
                                     }/>
@@ -80,9 +132,25 @@ export default class MenuItems extends Component {
                         if (menuAccountItems[labelMenu].name === LABEL_TRAVELLERPROFIL)
                             return (
                                 <ListItem button key={labelMenu}>
-                                    <ListItemIcon><CardTravel/></ListItemIcon>
+                                    <ListItemIcon
+                                        className=
+                                            {
+                                                this.props.location.pathname === routes.PROFILE_TRAVELER
+                                                    ? classes.navLinkActive
+                                                    : classes.navLink
+                                            }>
+                                        <CardTravel/>
+                                    </ListItemIcon>
                                     <ListItemText primary={
-                                        <Typography variant="button" gutterBottom>
+                                        <Typography
+                                            variant="button"
+                                            gutterBottom
+                                            className=
+                                                {
+                                                    this.props.location.pathname === routes.PROFILE_TRAVELER
+                                                        ? classes.navLinkActive
+                                                        : classes.navLink
+                                                }>
                                             {LABEL_TRAVELLERPROFIL}
                                         </Typography>
                                     }/>
@@ -91,9 +159,26 @@ export default class MenuItems extends Component {
                         if (menuAccountItems[labelMenu].name === LABEL_HOSTPROFIL)
                             return (
                                 <ListItem button key={labelMenu}>
-                                    <ListItemIcon><HowToReg/></ListItemIcon>
+                                    <ListItemIcon
+                                        className=
+                                            {
+                                                this.props.location.pathname === routes.PROFILE_HOST
+                                                    ? classes.navLinkActive
+                                                    : classes.navLink
+                                            }
+                                    >
+                                        <HowToReg/>
+                                    </ListItemIcon>
                                     <ListItemText primary={
-                                        <Typography variant="button" gutterBottom>
+                                        <Typography
+                                            variant="button"
+                                            gutterBottom
+                                            className=
+                                                {
+                                                    this.props.location.pathname === routes.PROFILE_HOST
+                                                        ? classes.navLinkActive
+                                                        : classes.navLink
+                                                }>
                                             {LABEL_HOSTPROFIL}
                                         </Typography>
                                     }/>
@@ -102,9 +187,25 @@ export default class MenuItems extends Component {
                         if (menuAccountItems[labelMenu].name === LABEL_CONFIGURATION)
                             return (
                                 <ListItem button key={labelMenu}>
-                                    <ListItemIcon><Settings/></ListItemIcon>
+                                    <ListItemIcon
+                                        className=
+                                            {
+                                                this.props.location.pathname === routes.CONFIGURATION_ACCOUNT
+                                                    ? classes.navLinkActive
+                                                    : classes.navLink
+                                            }>
+                                        <Settings/>
+                                    </ListItemIcon>
                                     <ListItemText primary={
-                                        <Typography variant="button" gutterBottom>
+                                        <Typography
+                                            variant="button"
+                                            gutterBottom
+                                            className=
+                                                {
+                                                    this.props.location.pathname === routes.CONFIGURATION_ACCOUNT
+                                                        ? classes.navLinkActive
+                                                        : classes.navLink
+                                                }>
                                             {LABEL_CONFIGURATION}
                                         </Typography>
                                     }/>
@@ -116,3 +217,6 @@ export default class MenuItems extends Component {
         )
     }
 }
+
+const MenuItemsStyle = withStyles(styles, {withTheme: true})(MenuItems)
+export default withRouter(MenuItemsStyle)

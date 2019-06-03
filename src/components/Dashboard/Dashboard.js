@@ -6,8 +6,6 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {doSnackBarClose} from "../../actions/dashboard_actions";
-import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
 
  class Dashboard  extends Component {
     constructor (props) {
@@ -18,20 +16,6 @@ import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
             horizontal: 'left',
         }
     }
-
-     componentDidMount() {
-         if (this.props.loggedIn && !this.props.showSnackBar) {
-             this.setState({open : true})
-         } else {
-             this.setState({open: false})
-         }
-     }
-
-     handleClose = () => {
-         this.setState({ open: false })
-         this.props.snackBarClose()
-     };
-
     render () {
         const { vertical, horizontal, open } = this.state;
         return (
@@ -47,26 +31,19 @@ import CustomizedSnackbars from "../SnackBar/CustomizedSnackBar";
                         </Col>
                     </Row>
                 </Container>
-                <CustomizedSnackbars
-                    variant = "success"
-                    anchorOrigin={{ vertical, horizontal }}
-                    open={open}
-                    onClose={this.handleClose}
-                    message={'Bienvennue ' + this.props.user.email}
-                />
             </div>
         )
     }
 }
 const mapStateToProps = state => ({
-    loggedIn: state.authentificationState.loggedIn,
+    /*loggedIn: state.authentificationState.loggedIn,
     user : state.authentificationState.user,
-    showSnackBar: state.dashboardState.showSnackBar,
+    showSnackBar: state.dashboardState.showSnackBar,*/
 })
 function mapDispatchToProps(disptach) {
-    return {
+  /*  return {
         snackBarClose: () => disptach(doSnackBarClose())
-    }
+    }*/
 }
 
 const DashBoardConnect = connect(mapStateToProps, mapDispatchToProps)(Dashboard)

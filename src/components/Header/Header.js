@@ -84,7 +84,7 @@ const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
 })
 const mapSizesToProps = ({ width }) => ({
-    isMobile: width < 600,
+    isMobile: width < 900,
 })
 
 
