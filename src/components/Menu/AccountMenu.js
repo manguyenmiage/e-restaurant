@@ -25,7 +25,7 @@ export default function AccountMenu (props) {
                 <ListItemIcon>
                     <AccountIcon />
                 </ListItemIcon>
-                <Link to="/account">
+                <Link to="/account/">
                     Mon profil
                 </Link>
             </MenuItem>
@@ -33,7 +33,7 @@ export default function AccountMenu (props) {
                 <ListItemIcon>
                     <DirectionIcon />
                 </ListItemIcon>
-                <Link to="/start-trip">
+                <Link to="/start-trip/">
                     Trouver un itinéraire
                 </Link>
             </MenuItem>

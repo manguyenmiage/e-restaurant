@@ -63,11 +63,11 @@ class HomeAccount extends Component {
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/static/images/cards/contemplative-reptile.jpg"
+                                        image="/account/teamwork.png"
                                         title="Contemplative Reptile"
                                     />
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                        <Typography gutterBottom variat="h5" component="h2">
                                             Lizard
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
