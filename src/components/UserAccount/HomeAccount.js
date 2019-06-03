@@ -32,6 +32,8 @@ const styles = theme => ({
     },
     media: {
         height: 140,
+        paddingTop: '56.25%', // 16:9,
+        marginTop:'30'
     },
     card: {
         margin : '10px 10px',
@@ -60,32 +62,29 @@ class HomeAccount extends Component {
                     <Row>
                         <Col md={6} xs={12} sm={12} >
                             <Card className={classes.card}>
+                                <img src="/account/teamwork.png" style={{height: '180px', float:'right'}}/>
+                                <CardContent>
+                                    <Typography gutterBottom variat="h5" component="h2">
+                                        Lizard
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                        across all continents except Antarctica
+                                    </Typography>
+                                </CardContent>
                                 <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/account/teamwork.png"
-                                        title="Contemplative Reptile"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variat="h5" component="h2">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                            across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Link to='/'>
-                                        <Button size="small" color="primary">
-                                            Share
-                                        </Button>
+                                    <Link to="/">
+                                        <CardContent>
+                                            <Typography gutterBottom variat="h5" component="h2">
+                                                Gérer vos informations personnelles
+                                            </Typography>
+                                        </CardContent>
+
                                     </Link>
-                                </CardActions>
+                                </CardActionArea>
                             </Card>
                         </Col>
-                        <Col md={6} xs={12} sm={12} >
+                        <Col md={6} xs={12} sm={12}>
                             <Card className={classes.card}>
                                 <CardActionArea>
                                     <CardMedia
