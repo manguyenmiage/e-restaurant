@@ -64,7 +64,7 @@ class Header extends Component {
             switch (this.props.location.pathname) {
                 case routes.START_TRIP:
                     return this.renderStartTripDrawer()
-                case routes.USER_ACCOUNT:
+                case routes.USER_ACCOUNT: case routes.PERSONAL_INFO:
                     if(!this.props.isMobile)
                         return this.renderAccountDrawer()
                     else

@@ -4,7 +4,13 @@ const user_credentials_mock = {
 }
 
 const user_data_mock = {
-   name : 'John Doe'
+   name : 'John Doe',
+   birthday: '01/01/1980',
+   sex: 'Homme',
+   photo: '/avatar/avatar1.jpg',
+   email : 'test@test.com',
+   telephone: '+33 4333333333',
+   address : '4 rue de la République'
 }
 
 export  {

@@ -26,7 +26,7 @@ const styles = theme => ({
     },
 });
 
-class HomeAccount extends Component {
+class PersonalProfile extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -46,50 +46,17 @@ class HomeAccount extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={6} xs={12} sm={12} >
-                           <AccountCard
-                                type="small"
+                        <Col>
+                            <AccountCard
+                                type='personalProfile'
                                 iconPath="/account/teamwork.png"
                                 title="Informations personnelles"
                                 body="Consulter et modifier vos données personnelles"
                                 labelAction="Gérer vos données personnelles"
-                                link="/personal-profile/"
-                           />
-                        </Col>
-                        <Col md={6} xs={12} sm={12}>
-                            <AccountCard
-                                type="small"
-                                iconPath="/account/tourist.png"
-                                title="Profil voyageur"
-                                body="Consulter l'historique de vos voyages"
-                                labelAction="Visualiser vos voyages"
                                 link="/"
                             />
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md={6} xs={12} sm={12} >
-                            <AccountCard
-                                type="small"
-                                iconPath="/account/lighthouse.png"
-                                title="Profil guide"
-                                body="Consulter et gérer vos services touristiques"
-                                labelAction="Gérer vos services"
-                                link="/"
-                            />
-                        </Col>
-                        <Col md={6} xs={12} sm={12} >
-                            <AccountCard
-                                type="small"
-                                iconPath="/account/protection.png"
-                                title="Configuration du compte"
-                                body="Consulter et paramétrer votre compte d'utilisateur"
-                                labelAction="Gérer votre compte"
-                                link="/"
-                            />
-                        </Col>
-                    </Row>
-
                 </Container>
             </div>
         )
@@ -97,12 +64,12 @@ class HomeAccount extends Component {
 }
 
 const mapSizesToProps = ({ width }) => ({
-    isMobile: width < 1024,
+    isMobile: width < 900,
 })
 const mapStateToProps = state => ({
     resultDataUser : state.authentificationState.resultDataUser,
 })
 
-const HomeAccountStyled = withStyles(styles, {withTheme: true})(HomeAccount)
-const HomeAccountConnect = connect(mapStateToProps)(HomeAccountStyled)
-export default withSizes(mapSizesToProps)(HomeAccountConnect)
+const PersonalProfilStyled = withStyles(styles, {withTheme: true})(PersonalProfile)
+const PersonalProfilConnect = connect(mapStateToProps)(PersonalProfilStyled)
+export default withSizes(mapSizesToProps)(PersonalProfilConnect)

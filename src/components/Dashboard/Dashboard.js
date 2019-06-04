@@ -46,5 +46,5 @@ function mapDispatchToProps(disptach) {
     }*/
 }
 
-const DashBoardConnect = connect(mapStateToProps, mapDispatchToProps)(Dashboard)
-export default withRouter(DashBoardConnect)
+//const DashBoardConnect = connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default withRouter(Dashboard)

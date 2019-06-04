@@ -57,7 +57,7 @@ function TabAccount(props) {
                     <Tab label="Accueil" icon={<ViewList/>}/>
                     <Tab label="Informations personnelles" icon={<PermContactCalendar/>}/>
                     <Tab label="Profil voyageur" icon={<CardTravel/>}/>
-                    <Tab label="Profil d'hôte" icon={<HowToReg/>}/>
+                    <Tab label="Profil guide" icon={<HowToReg/>}/>
                     <Tab label="Configuration compte" icon={<Settings/>}/>
                 </Tabs>
             </AppBar>

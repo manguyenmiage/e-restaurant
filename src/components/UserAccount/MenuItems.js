@@ -46,10 +46,10 @@ const LABEL_CONFIGURATION = menuAccountItems.configuration.name
 const styles = theme => ({
     navLinkActive: {
         color: '#4285F4',
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
     navLink: {
-       // color: 'black',
+        // color: 'black',
     },
 });
 
@@ -71,7 +71,7 @@ class MenuItems extends Component {
                     {Object.keys(menuAccountItems).map((labelMenu) => {
                         if (menuAccountItems[labelMenu].name === LABEL_HOME)
                             return (
-                                <Link to="/account/"
+                                <Link to={routes.USER_ACCOUNT}
                                       style={link}
                                       key={menuAccountItems[labelMenu].name}>
                                     <ListItem button key={labelMenu}>
@@ -104,30 +104,35 @@ class MenuItems extends Component {
                             )
                         if (menuAccountItems[labelMenu].name === LABEL_PERSONNALDATA)
                             return (
-                                <ListItem button key={labelMenu}>
-                                    <ListItemIcon
-                                        className=
-                                            {
-                                                this.props.location.pathname === routes.PERSONAL_INFO
-                                                    ? classes.navLinkActive
-                                                    : classes.navLink
-                                            }>
-                                        <PermContactCalendar/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={
-                                        <Typography
-                                            variant="button"
-                                            gutterBottom
+                                <Link to={routes.PERSONAL_INFO}
+                                      style={link}
+                                      key={menuAccountItems[labelMenu].name}>
+                                    <ListItem button key={labelMenu}>
+                                        <ListItemIcon
                                             className=
                                                 {
                                                     this.props.location.pathname === routes.PERSONAL_INFO
                                                         ? classes.navLinkActive
                                                         : classes.navLink
                                                 }>
-                                            {LABEL_PERSONNALDATA}
-                                        </Typography>
-                                    }/>
-                                </ListItem>
+                                            <PermContactCalendar/>
+                                        </ListItemIcon>
+                                        <ListItemText primary={
+                                            <Typography
+                                                variant="button"
+                                                gutterBottom
+                                                className=
+                                                    {
+                                                        this.props.location.pathname === routes.PERSONAL_INFO
+                                                            ? classes.navLinkActive
+                                                            : classes.navLink
+                                                    }>
+                                                {LABEL_PERSONNALDATA}
+                                            </Typography>
+                                        }/>
+                                    </ListItem>
+                                </Link>
+
                             )
                         if (menuAccountItems[labelMenu].name === LABEL_TRAVELLERPROFIL)
                             return (
