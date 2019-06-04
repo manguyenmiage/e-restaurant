@@ -71,7 +71,7 @@ class MenuItems extends Component {
                     {Object.keys(menuAccountItems).map((labelMenu) => {
                         if (menuAccountItems[labelMenu].name === LABEL_HOME)
                             return (
-                                <Link to="/account"
+                                <Link to="/account/"
                                       style={link}
                                       key={menuAccountItems[labelMenu].name}>
                                     <ListItem button key={labelMenu}>

@@ -24,14 +24,6 @@ const styles = theme => ({
         width: 60,
         height: 60,
     },
-    media: {
-        height: 140,
-        paddingTop: '56.25%', // 16:9,
-        marginTop:'30'
-    },
-    card: {
-        margin : '10px 10px',
-    },
 });
 
 class HomeAccount extends Component {
@@ -46,7 +38,7 @@ class HomeAccount extends Component {
             <div className={this.props.isMobile? classes.sScreen : classes.bScreen}>
                 <Container>
                     <Row className='justify-content-md-center'>
-                        <Col md="auto" xs={12} sm = {12} style={{textAlign:'center'}}>
+                        <Col md='auto' xs={12} sm = {12} style={{textAlign:'center'}}>
                             <Avatar alt="avatar-user" src="/avatar/avatar1.jpg" className={classes.bigAvatar} />
                             <Typography variant="h4" gutterBottom>
                                 Bienvenue {this.props.resultDataUser.name}
@@ -58,7 +50,7 @@ class HomeAccount extends Component {
                            <AccountCard
                                 iconPath="/account/teamwork.png"
                                 title="Informations personnelles"
-                                body="Consulter vos données personnelles et apporter des modifications si besoin"
+                                body="Consulter et modifier vos données personnelles"
                                 labelAction="Gérer vos données personnelles"
                                 link="/"
                            />
@@ -86,8 +78,8 @@ class HomeAccount extends Component {
                         <Col md={6} xs={12} sm={12} >
                             <AccountCard
                                 iconPath="/account/protection.png"
-                                title="Sécurité et configuration de votre compte"
-                                body="Consulter et paramétrer l'ensemble des configurations liées à votre compte"
+                                title="Configuration du compte"
+                                body="Consulter et paramétrer votre compte d'utilisateur"
                                 labelAction="Gérer votre compte"
                                 link="/"
                             />
@@ -101,7 +93,7 @@ class HomeAccount extends Component {
 }
 
 const mapSizesToProps = ({ width }) => ({
-    isMobile: width < 900,
+    isMobile: width < 1024,
 })
 const mapStateToProps = state => ({
     resultDataUser : state.authentificationState.resultDataUser,

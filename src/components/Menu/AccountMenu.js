@@ -6,6 +6,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import DirectionIcon from '@material-ui/icons/Directions'
 import AccountIcon from '@material-ui/icons/AccountBox'
 import PowerIcon from '@material-ui/icons/PowerSettingsNew'
+import CustomLink from "../CustomLink/CustomLink";
 
 export default function AccountMenu (props) {
 
@@ -25,17 +26,19 @@ export default function AccountMenu (props) {
                 <ListItemIcon>
                     <AccountIcon />
                 </ListItemIcon>
-                <Link to="/account/">
-                    Mon profil
-                </Link>
+                <CustomLink
+                    url="/account/"
+                    label="Mon profil"
+                />
             </MenuItem>
             <MenuItem>
                 <ListItemIcon>
                     <DirectionIcon />
                 </ListItemIcon>
-                <Link to="/start-trip/">
-                    Trouver un itinéraire
-                </Link>
+                <CustomLink
+                    url="/start-trip/"
+                    label=" Trouver un itinéraire"
+                />
             </MenuItem>
             <MenuItem onClick={handleLogoutAndClose}>
                 <ListItemIcon>

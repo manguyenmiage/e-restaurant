@@ -11,6 +11,7 @@ import {Formik} from "formik";
 import schema from "./SchemaValidation";
 import {withRouter} from "react-router-dom";
 import history from '../../history'
+import CustomLink from "../CustomLink/CustomLink";
 
 class LoginForm extends Component {
 
@@ -90,13 +91,12 @@ class LoginForm extends Component {
                             />
                         </Form>
                         <div className="buttonSignUp">
-                            <Link
-                                className="outline-success"
-                                role="button"
-                                to="/signup"
+                            <CustomLink
+                                label="Créer un compte"
+                                url="/signup"
                             >
                                 Créer un compte
-                            </Link>
+                            </CustomLink>
                         </div>
                     </div>
                 )

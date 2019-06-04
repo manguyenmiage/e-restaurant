@@ -10,7 +10,6 @@ import CustomLink from "../CustomLink/CustomLink";
 const styles = theme => ({
     card: {
         margin: '10px 10px',
-        height:'200px',
     },
 });
 
@@ -24,7 +23,7 @@ class AccountCard extends Component {
         const {classes, iconPath, title, body, labelAction, link} = this.props;
         return (
             <Card className={classes.card}>
-                <img src={iconPath} style={{height: '150px', float: 'right', padding: '5px 5px'}}/>
+                <img src={iconPath} style={{height: '120px', float: 'right', padding: '5px 5px'}}/>
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="h2">
                         {title}
@@ -33,7 +32,7 @@ class AccountCard extends Component {
                         {body}
                     </Typography>
                 </CardContent>
-                <CardActionArea>
+                <CardActionArea style={{bottom: 0}}>
                     <CustomLink
                         type='account'
                         url={link}
