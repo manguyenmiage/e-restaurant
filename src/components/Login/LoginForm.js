@@ -1,11 +1,11 @@
+/* global FB*/
 import React, {Component} from 'react'
 import Form from "react-bootstrap/Form";
 import './Login.css'
-import {GoogleLogin} from 'react-google-login';
 import {connect} from "react-redux";
 import {doLoginRequest} from '../../actions/authentification_actions'
 import AuthButton from '../Button/AuthButton'
-import {Link} from "react-router-dom";
+import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import {Alert} from "react-bootstrap";
 import {Formik} from "formik";
 import schema from "./SchemaValidation";
@@ -16,10 +16,38 @@ import CustomLink from "../CustomLink/CustomLink";
 class LoginForm extends Component {
 
     componentDidMount() {
+
         if (this.props.loggedIn) {
             history.push('/start-trip/')
         }
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '461054191307859',
+                cookie     : false,
+                xfbml      : false,
+                version    : 'v3.3'
+            });
+          //  FB.AppEvents.logPageView();
+            FB.Event.subscribe('auth.statusChange', function(response) {
+                if (response.authResponse) {
+                    //this.checkLoginState();
+                } else {
+                    console.log('---->User cancelled login or did not fully authorize.');
+                }
+            }.bind(this));
+        }.bind(this);
+
+        // Load the SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = '//connect.facebook.net/en_US/sdk.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     }
+
     componentDidUpdate(){
         if (this.props.loggedIn) {
             history.push('/start-trip/')
@@ -30,6 +58,39 @@ class LoginForm extends Component {
         this.props.loginRequest({email, password})
         actions.setSubmitting(false)
     }
+    handleClickFacebook = () => {
+        FB.login(this.checkLoginState())
+    }
+
+    statusChangeCallback(response) {
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+           // this.testAPI();
+            console.log('connected')
+        } else if (response.status === 'not_authorized') {
+            console.log('Please log ' +
+                'into this app.')
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            console.log('Please log ' +
+                'into this app.')
+        }
+    }
+    getInfo() {
+        FB.api('/me', 'GET', {fields : 'first_name, last_name, name, id, picture'}, function (response) {
+            console.log(response)
+        })
+    }
+    checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            this.getInfo()
+            this.statusChangeCallback(response);
+        }.bind(this)
+        );
+    }
+
+
 
     render() {
         return (
@@ -82,13 +143,12 @@ class LoginForm extends Component {
                                 </Alert> : ''}
                             <AuthButton label="Se connecter" loggingIn={this.props.loggingIn}/>
                             <hr/>
-                            <GoogleLogin
-                                onSuccess={'responseGoogle'}
-                                onFailure={'responseGoogle'}
-                                clientId={1212121212121}
-                                buttonText="Google"
-                                className="socialButton"
-                            />
+                            <FacebookLoginButton onClick={this.handleClickFacebook} >
+                                Se connecter avec Facebook
+                            </FacebookLoginButton>
+                            <GoogleLoginButton onClick={() => alert("Hello")} >
+                                Se connecter avec Google
+                            </GoogleLoginButton>
                         </Form>
                         <div className="buttonSignUp">
                             <CustomLink
