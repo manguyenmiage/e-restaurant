@@ -24,6 +24,16 @@ const applyLogInSuccess = (state, action) => {
     }
 }
 
+const applyLogInFbSuccess = (state, action) => {
+    console.log(action)
+    return{
+        loggingIn: false,
+        loggedIn : true,
+        logginFail: false,
+        user : action.user,
+    }
+}
+
 
 const applyLogInRequest = (state, action) => ({
     loggingIn: true,
@@ -65,6 +75,9 @@ function authentificationReducer (state = INITIAL_STATE, action) {
         //Listener login success
         case authentification_constants.LOGIN_SUCCESS :
             return applyLogInSuccess(state, action)
+        //Listener login fb success
+        case authentification_constants.LOGIN_FB_SUCCESS :
+            return applyLogInFbSuccess(state, action)
         //Listener login faillure
         case authentification_constants.LOGIN_FAILLURE :
             return applyLogInFaillure(state, action)

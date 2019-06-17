@@ -39,9 +39,9 @@ class PersonalProfile extends Component {
                 <Container>
                     <Row className='justify-content-md-center'>
                         <Col md='auto' xs={12} sm = {12} style={{textAlign:'center'}}>
-                            <Avatar alt="avatar-user" src="/avatar/avatar1.jpg" className={classes.bigAvatar} />
+                            <Avatar alt="avatar-user" src={this.props.user.fbAvatarUrl} className={classes.bigAvatar} />
                             <Typography variant="h4" gutterBottom>
-                                Bienvenue {this.props.resultDataUser.name}
+                                Bienvenue {this.props.user.fbDisplayName}
                             </Typography>
                         </Col>
                     </Row>
@@ -68,6 +68,7 @@ const mapSizesToProps = ({ width }) => ({
 })
 const mapStateToProps = state => ({
     resultDataUser : state.authentificationState.resultDataUser,
+    user : state.authentificationState.user,
 })
 
 const PersonalProfilStyled = withStyles(styles, {withTheme: true})(PersonalProfile)

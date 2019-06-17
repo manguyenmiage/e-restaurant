@@ -1,6 +1,7 @@
 import {user_credentials_mock} from '../mock/authentification_mock'
 import {api_routes} from '../constants/api_routes_constants'
 import axios from 'axios'
+import {doLoginFbSuccess} from "../actions/authentification_actions";
 
 //Call api login
 const login = (user) => {
@@ -15,7 +16,7 @@ const fbAuth = (user) => {
 
     let accessToken = user.token.accessToken
 
-    axios.post(api_routes.basePath+api_routes.users.fb.auth, {"access_token" : accessToken}).then(res => console.log(res))
+    return axios.post(api_routes.basePath+api_routes.users.fb.auth, {"access_token" : accessToken})
 }
 
 //Call api register

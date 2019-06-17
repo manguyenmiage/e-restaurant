@@ -15,6 +15,9 @@ function doLogoutRequest () {
 function doLoginSuccess (user) {
     return {type: authentification_constants.LOGIN_SUCCESS, user}
 }
+function doLoginFbSuccess (user) {
+    return {type: authentification_constants.LOGIN_FB_SUCCESS, user}
+}
 function doRegister (user) {
     return {type: authentification_constants.REGISTER_REQUEST, user}
 }
@@ -29,6 +32,7 @@ export {
     doLoginRequest,
     doLoginFacebookRequest,
     doLoginSuccess,
+    doLoginFbSuccess,
     doLoginFaillure,
     doRegister,
     doRegisterSuccess,

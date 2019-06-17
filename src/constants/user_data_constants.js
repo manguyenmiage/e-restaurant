@@ -1,7 +1,7 @@
 const personalProfileConstant =  {
     civilityBloc : {
-        photo: 'Photo',
-        name : 'Nom',
+        fbAvatarUrl: 'Photo',
+        fbDisplayName : 'Nom',
         birthday: 'Anniversaire',
         sex: 'Sexe',
     },

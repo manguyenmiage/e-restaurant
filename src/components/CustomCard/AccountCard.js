@@ -73,11 +73,11 @@ class AccountCard extends Component {
                                                 <Typography  style={{display: 'inline-block'}} variant="button" display="block" gutterBottom>
                                                     {personalProfileConstant[key][subKey]}
                                                 </Typography>
-                                                {subKey !== 'photo' ?
+                                                {subKey !== 'fbAvatarUrl' ?
                                                     <Typography  style={{display: 'inline-block', float:'right'}}variant="button" display="block" gutterBottom>
-                                                        {this.props.resultDataUser[subKey]}
+                                                        {this.props.user[subKey]}
                                                     </Typography> :
-                                                    <Avatar alt="avatar-user" src={this.props.resultDataUser[subKey]} style={{float : 'right'}}/>
+                                                    <Avatar alt="avatar-user" src={this.props.user[subKey]} style={{float : 'right'}}/>
                                                 }
 
                                             </CardActionArea>
@@ -97,6 +97,7 @@ class AccountCard extends Component {
 }
 const mapStateToProps = state => ({
     resultDataUser : state.authentificationState.resultDataUser,
+    user : state.authentificationState.user,
 })
 const AccountCardStyled = withStyles(styles, {withTheme: true})(AccountCard)
 export default connect(mapStateToProps)(AccountCardStyled)

@@ -54,7 +54,7 @@ class StartTrip extends Component {
                     anchorOrigin={{ vertical, horizontal }}
                     open={open}
                     onClose={this.handleClose}
-                    message={'Bienvennue ' + this.props.resultDataUser.name}
+                    message={'Bienvennue ' + this.props.user.fbDisplayName}
                 />
             </div>
         )
@@ -64,6 +64,7 @@ class StartTrip extends Component {
 const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
     resultDataUser : state.authentificationState.resultDataUser,
+    user : state.authentificationState.user,
     showSnackBar: state.dashboardState.showSnackBar,
 })
 function mapDispatchToProps(disptach) {
