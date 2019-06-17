@@ -1,18 +1,16 @@
-/* global FB*/
 import React, {Component} from 'react'
 import Form from "react-bootstrap/Form";
 import './Login.css'
 import {connect} from "react-redux";
-import {doLoginRequest} from '../../actions/authentification_actions'
+import {doLoginRequest, doLoginFacebookRequest} from '../../actions/authentification_actions'
 import AuthButton from '../Button/AuthButton'
-import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import {Alert} from "react-bootstrap";
 import {Formik} from "formik";
 import schema from "./SchemaValidation";
 import {withRouter} from "react-router-dom";
 import history from '../../history'
 import CustomLink from "../CustomLink/CustomLink";
-
+import FacebookAuthButton from "../Button/FacebookAuthButton";
 class LoginForm extends Component {
 
     componentDidMount() {
@@ -20,32 +18,6 @@ class LoginForm extends Component {
         if (this.props.loggedIn) {
             history.push('/start-trip/')
         }
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '461054191307859',
-                cookie     : false,
-                xfbml      : false,
-                version    : 'v3.3'
-            });
-          //  FB.AppEvents.logPageView();
-            FB.Event.subscribe('auth.statusChange', function(response) {
-                if (response.authResponse) {
-                    //this.checkLoginState();
-                } else {
-                    console.log('---->User cancelled login or did not fully authorize.');
-                }
-            }.bind(this));
-        }.bind(this);
-
-        // Load the SDK asynchronously
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = '//connect.facebook.net/en_US/sdk.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
     }
 
     componentDidUpdate(){
@@ -58,39 +30,14 @@ class LoginForm extends Component {
         this.props.loginRequest({email, password})
         actions.setSubmitting(false)
     }
-    handleClickFacebook = () => {
-        FB.login(this.checkLoginState())
+
+    handleSocialLoginSuccess = (user) => {
+        this.props.loginFacebookRequest(user)
     }
 
-    statusChangeCallback(response) {
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-           // this.testAPI();
-            console.log('connected')
-        } else if (response.status === 'not_authorized') {
-            console.log('Please log ' +
-                'into this app.')
-        } else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            console.log('Please log ' +
-                'into this app.')
-        }
+    handleSocialLoginFailure = (err) => {
+        console.log(err)
     }
-    getInfo() {
-        FB.api('/me', 'GET', {fields : 'first_name, last_name, name, id, picture'}, function (response) {
-            console.log(response)
-        })
-    }
-    checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            this.getInfo()
-            this.statusChangeCallback(response);
-        }.bind(this)
-        );
-    }
-
-
 
     render() {
         return (
@@ -143,12 +90,12 @@ class LoginForm extends Component {
                                 </Alert> : ''}
                             <AuthButton label="Se connecter" loggingIn={this.props.loggingIn}/>
                             <hr/>
-                            <FacebookLoginButton onClick={this.handleClickFacebook} >
-                                Se connecter avec Facebook
-                            </FacebookLoginButton>
-                            <GoogleLoginButton onClick={() => alert("Hello")} >
-                                Se connecter avec Google
-                            </GoogleLoginButton>
+                            <FacebookAuthButton
+                                provider='facebook'
+                                appId='461054191307859'
+                                onLoginSuccess={this.handleSocialLoginSuccess}
+                                onLoginFailure={this.handleSocialLoginFailure}
+                            />
                         </Form>
                         <div className="buttonSignUp">
                             <CustomLink
@@ -175,7 +122,8 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(disptach) {
     return {
-        loginRequest: user => disptach(doLoginRequest(user))
+        loginRequest: user => disptach(doLoginRequest(user)),
+        loginFacebookRequest: user => disptach(doLoginFacebookRequest(user))
     }
 }
 

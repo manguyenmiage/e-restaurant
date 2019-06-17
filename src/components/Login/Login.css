@@ -41,3 +41,7 @@ a:hover {
 .loading{
     float: right;
 }
+
+.fb_reset{
+    display: none
+}

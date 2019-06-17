@@ -3,6 +3,9 @@ import {authentification_constants} from '../constants/authentification_constant
 function doLoginRequest (user) {
     return {type : authentification_constants.LOGIN_REQUEST, user}
 }
+function doLoginFacebookRequest (user) {
+    return {type : authentification_constants.LOGIN_FACEBOOK_REQUEST, user}
+}
 function doLoginFaillure (user) {
     return {type: authentification_constants.LOGIN_FAILLURE, user}
 }
@@ -24,6 +27,7 @@ function doRegisterFaillure (user) {
 
 export {
     doLoginRequest,
+    doLoginFacebookRequest,
     doLoginSuccess,
     doLoginFaillure,
     doRegister,

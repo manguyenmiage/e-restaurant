@@ -1,6 +1,6 @@
 import { call, put, delay } from 'redux-saga/effects';
 import {doLoginFaillure, doLoginSuccess, doRegisterSuccess, doRegisterFaillure} from "../actions/authentification_actions";
-import {login, register} from '../api/authentification_api'
+import {login, register, fbAuth} from '../api/authentification_api'
 
 //login action
 function *handleLoginRequest(action) {
@@ -15,6 +15,18 @@ function *handleLoginRequest(action) {
     }
 
 }
+//login with facebook account
+function *handleLoginFacebookRequest(action) {
+    try{
+        const {user} = action
+        const result = yield call (fbAuth, user)
+    }catch (e) {
+        yield delay(5000);
+        yield put(doLoginFaillure(e))
+    }
+
+}
+
 //register action
 function *handleRegisterRequest(action) {
     try{
@@ -32,4 +44,5 @@ function *handleRegisterRequest(action) {
 export {
     handleLoginRequest,
     handleRegisterRequest,
+    handleLoginFacebookRequest
 }
