@@ -9,4 +9,13 @@ export const api_routes = process.env.REACT_APP_API_MODE_CONNECT === 'local'
                 }
             }
         }
-    : {}
+    : {
+        basePath: 'https://epstj5cx6c.execute-api.us-east-1.amazonaws.com/dev',
+        users: {
+            fb: {
+                auth: '/users/auth/facebook',
+                authMe: '/auth/me'
+            }
+        }
+      }
+
