@@ -11,10 +11,14 @@ import {withRouter} from "react-router-dom";
 import history from '../../history'
 import CustomLink from "../CustomLink/CustomLink";
 import FacebookAuthButton from "../Button/FacebookAuthButton";
+
+const appID =  process.env.REACT_APP_API_MODE_CONNECT === 'local'
+    ? process.env.REACT_APP_FB_ID_DEV
+    : process.env.REACT_APP_FB_ID_PROD
+
 class LoginForm extends Component {
 
     componentDidMount() {
-
         if (this.props.loggedIn) {
             history.push('/start-trip/')
         }
@@ -92,7 +96,8 @@ class LoginForm extends Component {
                             <hr/>
                             <FacebookAuthButton
                                 provider='facebook'
-                                appId='461054191307859'
+                                appId = {appID}
+                                loggingInFb={this.props.loggingInFb}
                                 onLoginSuccess={this.handleSocialLoginSuccess}
                                 onLoginFailure={this.handleSocialLoginFailure}
                             />
@@ -115,6 +120,7 @@ class LoginForm extends Component {
 const mapStateToProps = state => ({
     loggedIn: state.authentificationState.loggedIn,
     loggingIn: state.authentificationState.loggingIn,
+    loggingInFb: state.authentificationState.loggingInFb,
     logginFail: state.authentificationState.logginFail,
     msgError: state.authentificationState.msgError
 })

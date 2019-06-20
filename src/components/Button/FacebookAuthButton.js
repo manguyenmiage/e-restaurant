@@ -6,7 +6,7 @@ const FacebookAuthButton = ({ children, triggerLogin, ...props }) =>
 {
     return (
         <FacebookLoginButton onClick={triggerLogin} {...props} type='button'>
-            Se connecter avec Facebook
+            Se connecter avec Facebook {props.loggingInFb  &&<span className="loading"><i className="fas fa-spinner  fa-spin"></i></span>}
         </FacebookLoginButton>
     )
 }

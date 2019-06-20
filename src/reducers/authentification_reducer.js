@@ -5,6 +5,8 @@ import history from '../history'
 const INITIAL_STATE = {
     loggingIn : false,
     loggedIn : false,
+    loggingInFb : false,
+    loggedInFb : false,
     logginFail: false,
     isRegistered : false,
     isRegisterFail: false,
@@ -25,9 +27,8 @@ const applyLogInSuccess = (state, action) => {
 }
 
 const applyLogInFbSuccess = (state, action) => {
-    console.log(action)
     return{
-        loggingIn: false,
+        loggingInFb: false,
         loggedIn : true,
         logginFail: false,
         user : action.user,
@@ -38,6 +39,12 @@ const applyLogInFbSuccess = (state, action) => {
 const applyLogInRequest = (state, action) => ({
     loggingIn: true,
     loggedIn : false,
+    user : action.user
+})
+
+const applyLogInFbRequest = (state, action) => ({
+    loggingInFb: true,
+    loggedInFb : false,
     user : action.user
 })
 
@@ -72,6 +79,8 @@ function authentificationReducer (state = INITIAL_STATE, action) {
         //Listener login request
         case authentification_constants.LOGIN_REQUEST :
             return applyLogInRequest(state, action)
+        case authentification_constants.LOGIN_FACEBOOK_REQUEST :
+            return applyLogInFbRequest(state, action)
         //Listener login success
         case authentification_constants.LOGIN_SUCCESS :
             return applyLogInSuccess(state, action)
