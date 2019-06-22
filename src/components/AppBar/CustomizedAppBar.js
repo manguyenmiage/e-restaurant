@@ -20,7 +20,7 @@ import {doLogoutRequest} from "../../actions/authentification_actions";
 import {Link} from "react-router-dom";
 import trident from "../../assets/img/trident.png";
 import classNames from 'classnames';
-
+import withSizes from 'react-sizes'
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -35,6 +35,16 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
+
+    appBarMobile: {
+        zIndex: 0,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        position : 'relative'
+    },
+
     appBarShift: {
         marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
@@ -169,7 +179,8 @@ class CustomizedAppBar extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="fixed" color="inherit"  className={classNames(classes.appBar, {
+                <AppBar position="fixed" color="inherit"  className={
+                     classNames(this.props.isMobile ? classes.appBarMobile : classes.appBar, {
                     [classes.appBarShift]: this.props.open,
                 })}>
                     <Toolbar>
@@ -243,6 +254,10 @@ function mapDispatchToProps(disptach) {
         logoutRequest: () => disptach(doLogoutRequest())
     }
 }
+const mapSizesToProps = ({ width }) => ({
+    isMobile: width < 900,
+})
 
 const CustomizedAppBarConnect = connect(mapStateToProps, mapDispatchToProps)(CustomizedAppBar)
-export default withStyles(styles)(CustomizedAppBarConnect);
+const CustomizedAppBarConnectStyled =  withStyles(styles)(CustomizedAppBarConnect);
+export default withSizes(mapSizesToProps)(CustomizedAppBarConnectStyled);

@@ -45,3 +45,7 @@ a:hover {
 .fb_reset{
     display: none
 }
+
+#botfuel {
+    display: inline-block;
+}

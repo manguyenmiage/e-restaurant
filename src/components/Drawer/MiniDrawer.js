@@ -31,6 +31,7 @@ import SelectTransportPopover from "../Popover/SelectTransportPopover";
 import SelectThemesPopover from "../Popover/SelectThemesPopover";
 import CustomizedAppBarConnect from "../AppBar/CustomizedAppBar";
 import IconButton from "@material-ui/core/IconButton";
+import withSizes from 'react-sizes'
 
 const drawerWidth = 240;
 
@@ -307,7 +308,7 @@ class MiniDrawer extends React.Component {
                     hidden={false}
                 />
                 <Drawer
-                    variant="permanent"
+                    variant={this.props.isMobile ? 'temporary' : 'permanent'}
                     className={classNames(classes.drawer, {
                         [classes.drawerOpen]: this.state.open,
                         [classes.drawerClose]: !this.state.open,
@@ -442,5 +443,10 @@ function mapDispatchToProps(disptach) {
     }
 }
 
+const mapSizesToProps = ({ width }) => ({
+    isMobile: width < 900,
+})
+
 const MiniDrawerConnect = connect(mapStateToProps, mapDispatchToProps)(MiniDrawer)
-export default withStyles(styles, {withTheme: true})(MiniDrawerConnect);
+const MiniDrawerConnectWithStyle =  withStyles(styles, {withTheme: true})(MiniDrawerConnect);
+export default withSizes(mapSizesToProps)(MiniDrawerConnectWithStyle);
