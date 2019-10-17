@@ -131,8 +131,6 @@ class CustomizedAppBar extends React.Component {
     };
 
     handleMenuClose = () => {
-        var elem = document.getElementById("botfuel");
-        elem.remove();
         this.setState({ anchorEl: null });
         this.handleMobileMenuClose();
     };

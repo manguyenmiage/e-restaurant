@@ -1,7 +1,6 @@
 import React from 'react'
 import Menu from "@material-ui/core/Menu/Menu";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import {Link} from "react-router-dom";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import DirectionIcon from '@material-ui/icons/Directions'
 import AccountIcon from '@material-ui/icons/AccountBox'
@@ -13,6 +12,8 @@ export default function AccountMenu (props) {
     const handleLogoutAndClose = () => {
         props.handleLogout()
         props.handleClose()
+        var elem = document.getElementById("botfuel");
+        elem.remove();
     }
     return (
         <Menu
